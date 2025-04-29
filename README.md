@@ -1,6 +1,13 @@
-# Consent Manager on Algorand with Next.js
+# Consent Management System on Algorand with Next.js
 
-A modern, blockchain-powered consent management system built on Algorand using Next.js and AlgoKit. This application allows users to control which websites can access their personal data through a beautiful and intuitive UI.
+A modern, blockchain-powered consent management system built on Algorand using Next.js and AlgoKit. This application allows users to control which websites and institutions can access their personal data through a beautiful and intuitive UI.
+
+## Overview of the Solution
+- Users can **grant consent** by issuing an **NFT-based access token**.
+- Institutions can use this NFT to **verify and access** documents via DigiLocker.
+- Users can **revoke consent** by **burning, freezing, or expiring** the NFT.
+- The system ensures **privacy** using **Zero-Knowledge Proofs (ZKP)** and **Algorand Blockchain**.
+- The UI is **user-friendly** for managing consent requests.
 
 ## Features
 
@@ -10,12 +17,26 @@ A modern, blockchain-powered consent management system built on Algorand using N
 - **Revoke Consent**: Remove consent from websites at any time
 - **Blockchain Security**: All actions are recorded securely on the Algorand blockchain
 - **Modern UI**: Built with Next.js and TailwindCSS for a responsive, beautiful experience
+- **DigiLocker & Aadhaar Integration**: Connect with India's digital identity systems
 
-## Technology Stack
+## Tech Stack
 
-- **Frontend**: Next.js, TailwindCSS, TypeScript
-- **Blockchain**: Algorand, AlgoKit, algosdk
-- **Wallet Integration**: @txnlab/use-wallet, Pera Wallet, Defly Wallet
+### Blockchain & Smart Contracts
+- **Algorand Blockchain** – Used for storing NFTs and ensuring tamper-proof consent
+- **Smart Contracts** – Handle consent creation, revocation, and verification
+- **AlgoKit** - Algorand development toolkit
+
+### Identity & Data Management
+- **Aadhaar e-KYC & DigiLocker API** – For fetching and verifying identity/documents
+- **Self-Sovereign Identity (SSI) Framework** – User owns their data
+
+### Privacy & Security
+- **Zero-Knowledge Proofs (ZKP)** – Ensures only authorized institutions can access data
+- **IPFS/Arweave** – Stores metadata off-chain (document hashes, NFT details)
+
+### Frontend & User Interface
+- **Next.js + Tailwind CSS** – For a modern, user-friendly UI
+- **Algorand Wallet Integration**: @txnlab/use-wallet, Pera Wallet, Defly Wallet
 
 ## Getting Started
 
@@ -65,6 +86,27 @@ npm run dev
 ```
 
 6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## System Architecture
+
+### 1. Consent Issuance (NFT Creation)
+- User logs in using **DigiLocker/Aadhaar e-KYC**.
+- Selects **which document(s)** they want to share.
+- A **Consent NFT** is minted on Algorand and sent to the institution.
+- The NFT contains:
+  - **Document Hash (from DigiLocker)**
+  - **Expiry Time** (if applicable)
+  - **Institution Address (who can access it)**
+
+### 2. Consent Verification (Institutions Accessing Data)
+- Institution **verifies NFT ownership** and **checks expiry**.
+- Uses **ZKP to confirm document authenticity** without exposing the full data.
+- If valid, the system **grants access to the document on DigiLocker**.
+
+### 3. Consent Revocation (User Taking Back Access)
+- **Burn the NFT (Permanent Revoke)**
+- **Freeze the NFT (Temporary Suspend Access)**
+- **ZKP-Based Revocation (Instantly Blocks Unauthorized Access)**
 
 ## Smart Contract Deployment
 
@@ -130,3 +172,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [AlgoKit](https://developer.algorand.org/docs/get-details/algokit/)
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [DigiLocker](https://digilocker.gov.in/)
+- [Aadhaar](https://uidai.gov.in/)
