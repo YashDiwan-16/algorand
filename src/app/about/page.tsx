@@ -12,7 +12,9 @@ import {
   FiKey,
   FiFileText,
   FiHeadphones,
-  FiAward
+  FiAward,
+  FiCode,
+  FiLayers
 } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
@@ -179,11 +181,105 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
-        {/* How It Works */}
+        {/* System Architecture */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
+          className="bg-white rounded-xl shadow-md p-8 mb-12"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">System Architecture</h2>
+          
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-bold text-indigo-700 mb-4 flex items-center">
+                <FiLayers className="mr-2" />
+                Technical Architecture
+              </h3>
+              <p className="text-gray-700 mb-6">
+                Our system integrates Aadhaar's identity verification, DigiLocker's document storage, and Algorand's blockchain security to create a comprehensive consent management solution.
+              </p>
+              <div className="relative h-[600px] w-full border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                <Image 
+                  src="/images/consent-architecture.svg" 
+                  alt="Consent Management System Architecture" 
+                  fill
+                  className="object-contain p-4"
+                />
+              </div>
+            </div>
+            
+            <div className="mt-12">
+              <h3 className="text-xl font-bold text-indigo-700 mb-4 flex items-center">
+                <FiCode className="mr-2" />
+                Consent Process Flow
+              </h3>
+              <p className="text-gray-700 mb-6">
+                The consent management process follows a clear workflow from user registration through consent granting, verification, and revocation.
+              </p>
+              <div className="relative h-[500px] w-full border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                <Image 
+                  src="/images/consent-flow.svg" 
+                  alt="Consent Management Process Flow" 
+                  fill
+                  className="object-contain p-4"
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+              <div className="bg-indigo-50 p-6 rounded-lg border border-indigo-100">
+                <h4 className="font-bold text-lg mb-3 text-indigo-800">Key Technical Components</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-indigo-500 mr-2 flex-shrink-0" />
+                    <span>Algorand ASA (Algorand Standard Assets) for NFT tokens</span>
+                  </li>
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-indigo-500 mr-2 flex-shrink-0" />
+                    <span>PyTeal for smart contract development</span>
+                  </li>
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-indigo-500 mr-2 flex-shrink-0" />
+                    <span>Next.js and TailwindCSS for frontend</span>
+                  </li>
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-indigo-500 mr-2 flex-shrink-0" />
+                    <span>Snarkjs/Circom for Zero-Knowledge Proofs</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-100">
+                <h4 className="font-bold text-lg mb-3 text-emerald-800">Security Features</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-emerald-500 mr-2 flex-shrink-0" />
+                    <span>Blockchain-verified audit logs</span>
+                  </li>
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-emerald-500 mr-2 flex-shrink-0" />
+                    <span>Zero-Knowledge Proofs for privacy</span>
+                  </li>
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-emerald-500 mr-2 flex-shrink-0" />
+                    <span>Time-bound access control</span>
+                  </li>
+                  <li className="flex items-center">
+                    <FiCheckCircle className="text-emerald-500 mr-2 flex-shrink-0" />
+                    <span>Tamper-proof consent records</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* How It Works */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
           className="bg-white rounded-xl shadow-md p-8 mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-8">How It Works</h2>
@@ -234,7 +330,7 @@ export default function AboutPage() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.5 }}
           className="bg-white rounded-xl shadow-md p-8 mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Our Team</h2>
@@ -267,7 +363,7 @@ export default function AboutPage() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.6 }}
           className="bg-gradient-to-r from-indigo-600 to-blue-500 rounded-xl shadow-md p-8 mb-12"
         >
           <div className="text-center mb-8">
@@ -316,7 +412,7 @@ export default function AboutPage() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.7 }}
           className="bg-white rounded-xl border border-gray-200 p-8 text-center shadow-md"
         >
           <div className="max-w-3xl mx-auto">
