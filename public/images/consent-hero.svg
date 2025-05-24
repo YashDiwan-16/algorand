@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0.9" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0.3" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="10" flood-opacity="0.2" />
+    </filter>
+    <clipPath id="circleClip">
+      <circle cx="400" cy="300" r="180" />
+    </clipPath>
+  </defs>
+  
+  <!-- Background elements -->
+  <circle cx="400" cy="300" r="250" fill="url(#gradient2)" opacity="0.4" />
+  <circle cx="400" cy="300" r="200" fill="#f5f5f5" opacity="0.7" filter="url(#shadow)" />
+  
+  <!-- Blockchain nodes and connections -->
+  <g stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4" opacity="0.6">
+    <line x1="160" y1="240" x2="250" y2="150" />
+    <line x1="250" y1="150" x2="400" y2="120" />
+    <line x1="400" y1="120" x2="550" y2="150" />
+    <line x1="550" y1="150" x2="640" y2="240" />
+    <line x1="640" y1="240" x2="650" y2="350" />
+    <line x1="650" y1="350" x2="550" y2="450" />
+    <line x1="550" y1="450" x2="400" y2="480" />
+    <line x1="400" y1="480" x2="250" y2="450" />
+    <line x1="250" y1="450" x2="150" y2="350" />
+    <line x1="150" y1="350" x2="160" y2="240" />
+    
+    <!-- Cross connections -->
+    <line x1="160" y1="240" x2="400" y2="300" />
+    <line x1="250" y1="150" x2="400" y2="300" />
+    <line x1="400" y1="120" x2="400" y2="300" />
+    <line x1="550" y1="150" x2="400" y2="300" />
+    <line x1="640" y1="240" x2="400" y2="300" />
+    <line x1="650" y1="350" x2="400" y2="300" />
+    <line x1="550" y1="450" x2="400" y2="300" />
+    <line x1="400" y1="480" x2="400" y2="300" />
+    <line x1="250" y1="450" x2="400" y2="300" />
+    <line x1="150" y1="350" x2="400" y2="300" />
+  </g>
+
+  <!-- Blockchain nodes -->
+  <g>
+    <circle cx="160" cy="240" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="250" cy="150" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="400" cy="120" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="550" cy="150" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="640" cy="240" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="650" cy="350" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="550" cy="450" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="400" cy="480" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="250" cy="450" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+    <circle cx="150" cy="350" r="15" fill="white" stroke="#4F46E5" stroke-width="2" />
+  </g>
+  
+  <!-- Central circle with shield -->
+  <circle cx="400" cy="300" r="60" fill="url(#gradient1)" filter="url(#shadow)" />
+  
+  <!-- Shield Icon -->
+  <path d="M400 260 L370 275 L370 315 L400 340 L430 315 L430 275 Z" fill="white" stroke="white" stroke-width="2" />
+  <path d="M400 270 L380 280 L380 310 L400 325 L420 310 L420 280 Z" fill="url(#gradient1)" stroke="url(#gradient1)" stroke-width="1" />
+  <line x1="400" y1="280" x2="400" y2="315" stroke="white" stroke-width="3" />
+  <line x1="390" y1="300" x2="410" y2="300" stroke="white" stroke-width="3" />
+  
+  <!-- User data elements -->
+  <g clip-path="url(#circleClip)">
+    <!-- Document icons -->
+    <g transform="translate(270, 220)" opacity="0.9">
+      <rect x="0" y="0" width="35" height="45" rx="3" fill="white" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="12" x2="27" y2="12" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="20" x2="27" y2="20" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="28" x2="20" y2="28" stroke="#4F46E5" stroke-width="2" />
+    </g>
+    
+    <g transform="translate(490, 220)" opacity="0.9">
+      <rect x="0" y="0" width="35" height="45" rx="3" fill="white" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="12" x2="27" y2="12" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="20" x2="27" y2="20" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="28" x2="20" y2="28" stroke="#4F46E5" stroke-width="2" />
+    </g>
+    
+    <g transform="translate(320, 350)" opacity="0.9">
+      <rect x="0" y="0" width="35" height="45" rx="3" fill="white" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="12" x2="27" y2="12" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="20" x2="27" y2="20" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="28" x2="20" y2="28" stroke="#4F46E5" stroke-width="2" />
+    </g>
+    
+    <g transform="translate(440, 350)" opacity="0.9">
+      <rect x="0" y="0" width="35" height="45" rx="3" fill="white" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="12" x2="27" y2="12" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="20" x2="27" y2="20" stroke="#4F46E5" stroke-width="2" />
+      <line x1="8" y1="28" x2="20" y2="28" stroke="#4F46E5" stroke-width="2" />
+    </g>
+    
+    <!-- Check marks and X marks -->
+    <g transform="translate(315, 215)" fill="#10B981">
+      <circle cx="10" cy="10" r="9" fill="#10B981" opacity="0.2" />
+      <path d="M5 10 L8 13 L15 6" stroke="#10B981" stroke-width="2" fill="none" />
+    </g>
+    
+    <g transform="translate(535, 215)" fill="#EF4444">
+      <circle cx="10" cy="10" r="9" fill="#EF4444" opacity="0.2" />
+      <path d="M6 6 L14 14 M14 6 L6 14" stroke="#EF4444" stroke-width="2" />
+    </g>
+    
+    <g transform="translate(365, 345)" fill="#10B981">
+      <circle cx="10" cy="10" r="9" fill="#10B981" opacity="0.2" />
+      <path d="M5 10 L8 13 L15 6" stroke="#10B981" stroke-width="2" fill="none" />
+    </g>
+    
+    <g transform="translate(485, 345)" fill="#EF4444">
+      <circle cx="10" cy="10" r="9" fill="#EF4444" opacity="0.2" />
+      <path d="M6 6 L14 14 M14 6 L6 14" stroke="#EF4444" stroke-width="2" />
+    </g>
+  </g>
+  
+  <!-- Animated particles -->
+  <circle cx="400" cy="200" r="4" fill="#4F46E5" opacity="0.8">
+    <animate attributeName="cy" from="200" to="300" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="0.8" to="0.2" dur="2s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="320" cy="300" r="4" fill="#4F46E5" opacity="0.8">
+    <animate attributeName="cx" from="320" to="400" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="0.8" to="0.2" dur="2s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="480" cy="300" r="4" fill="#4F46E5" opacity="0.8">
+    <animate attributeName="cx" from="480" to="400" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="0.8" to="0.2" dur="2s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="400" cy="400" r="4" fill="#4F46E5" opacity="0.8">
+    <animate attributeName="cy" from="400" to="300" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="0.8" to="0.2" dur="2s" repeatCount="indefinite" />
+  </circle>
+</svg> 

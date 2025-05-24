@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  manager-contracts-validate:
+    name: Run manager-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/manager-contracts-ci.yaml
+
+  manager-contracts-release:
+    name: Run manager-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/manager-contracts-cd.yaml
+    needs: manager-contracts-validate
+
+  manager-frontend-validate:
+    name: Run manager-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/manager-frontend-ci.yaml
+
+  manager-frontend-release:
+    name: Run manager-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/manager-frontend-cd.yaml
+    needs: manager-frontend-validate

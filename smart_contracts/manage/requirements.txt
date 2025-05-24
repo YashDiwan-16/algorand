@@ -1,0 +1,8 @@
+py-algorand-sdk>=2.0.0
+pyteal>=0.20.0
+algokit-utils>=2.0.0
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=23.0.0
+mypy>=1.0.0
+ruff>=0.0.0 

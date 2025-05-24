@@ -1,0 +1,165 @@
+#pragma version 6
+txn ApplicationID
+int 0
+==
+bnz main_l20
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l19
+txn OnCompletion
+int UpdateApplication
+==
+bnz main_l18
+txn OnCompletion
+int CloseOut
+==
+bnz main_l17
+txn OnCompletion
+int OptIn
+==
+bnz main_l16
+txna ApplicationArgs 0
+byte "revoke_consent"
+==
+bnz main_l13
+txna ApplicationArgs 0
+byte "grant_consent"
+==
+bnz main_l12
+txna ApplicationArgs 0
+byte "update_consent"
+==
+bnz main_l11
+txna ApplicationArgs 0
+byte "verify_consent"
+==
+bnz main_l10
+err
+main_l10:
+txn Sender
+byte "recipient"
+app_global_get
+==
+assert
+byte "status"
+app_global_get
+byte "granted"
+==
+assert
+global LatestTimestamp
+byte "expiry"
+app_global_get
+<
+assert
+int 1
+return
+main_l11:
+txn Sender
+byte "owner"
+app_global_get
+==
+assert
+global LatestTimestamp
+txna ApplicationArgs 1
+btoi
+<
+assert
+byte "expiry"
+txna ApplicationArgs 1
+btoi
+app_global_put
+byte "scope"
+txna ApplicationArgs 2
+app_global_put
+byte "metadata"
+txna ApplicationArgs 3
+app_global_put
+int 1
+return
+main_l12:
+txn Sender
+byte "owner"
+app_global_get
+==
+assert
+byte "recipient"
+txna Accounts 1
+app_global_put
+byte "expiry"
+txna ApplicationArgs 1
+btoi
+app_global_put
+byte "scope"
+txna ApplicationArgs 2
+app_global_put
+byte "metadata"
+txna ApplicationArgs 3
+app_global_put
+byte "asa_id"
+txna ApplicationArgs 4
+btoi
+app_global_put
+byte "status"
+byte "granted"
+app_global_put
+int 1
+return
+main_l13:
+txn Sender
+byte "owner"
+app_global_get
+==
+assert
+byte "asa_id"
+app_global_get
+int 0
+!=
+bnz main_l15
+main_l14:
+byte "status"
+byte "revoked"
+app_global_put
+int 1
+return
+main_l15:
+itxn_begin
+int axfer
+itxn_field TypeEnum
+byte "asa_id"
+app_global_get
+itxn_field XferAsset
+int 1
+itxn_field AssetAmount
+byte "recipient"
+app_global_get
+itxn_field AssetSender
+byte "owner"
+app_global_get
+itxn_field AssetReceiver
+byte "owner"
+app_global_get
+itxn_field AssetCloseTo
+itxn_submit
+b main_l14
+main_l16:
+int 1
+return
+main_l17:
+int 1
+return
+main_l18:
+int 0
+return
+main_l19:
+int 0
+return
+main_l20:
+byte "owner"
+txn Sender
+app_global_put
+byte "status"
+byte "active"
+app_global_put
+int 1
+return

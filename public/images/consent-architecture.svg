@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#4338ca">Consent Management System Architecture</text>
+  
+  <!-- User Section -->
+  <g transform="translate(100, 120)">
+    <rect x="0" y="0" width="140" height="120" fill="#e0e7ff" stroke="#4338ca" stroke-width="2" rx="10" ry="10"/>
+    <text x="70" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#4338ca">User</text>
+    <circle cx="70" cy="65" r="25" fill="#c7d2fe" stroke="#4338ca" stroke-width="2"/>
+    <path d="M70,50 A5,5 0 0,1 75,55 A5,5 0 0,1 70,60 A5,5 0 0,1 65,55 A5,5 0 0,1 70,50 Z" fill="#4338ca"/>
+    <path d="M70,62 L70,85 M60,70 L80,70 M60,90 L80,90" stroke="#4338ca" stroke-width="2" fill="none"/>
+    <text x="70" y="112" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#4338ca">Wallet Owner</text>
+  </g>
+  
+  <!-- Aadhaar Section -->
+  <g transform="translate(300, 120)">
+    <rect x="0" y="0" width="140" height="120" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" rx="10" ry="10"/>
+    <text x="70" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#7c3aed">Aadhaar</text>
+    <path d="M70,50 L100,80 L70,110 L40,80 Z" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="70" y="85" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#7c3aed">e-KYC</text>
+  </g>
+  
+  <!-- DigiLocker Section -->
+  <g transform="translate(500, 120)">
+    <rect x="0" y="0" width="140" height="120" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="10" ry="10"/>
+    <text x="70" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#3b82f6">DigiLocker</text>
+    <rect x="40" y="50" width="60" height="45" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="5" ry="5"/>
+    <rect x="50" y="60" width="40" height="5" fill="#3b82f6"/>
+    <rect x="50" y="70" width="40" height="5" fill="#3b82f6"/>
+    <rect x="50" y="80" width="25" height="5" fill="#3b82f6"/>
+    <text x="70" y="112" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#3b82f6">Documents</text>
+  </g>
+  
+  <!-- Consent Manager Application -->
+  <g transform="translate(300, 300)">
+    <rect x="0" y="0" width="200" height="150" fill="#d1fae5" stroke="#10b981" stroke-width="2" rx="10" ry="10"/>
+    <text x="100" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#065f46">Consent Manager</text>
+    
+    <!-- NFT Icon -->
+    <rect x="30" y="50" width="60" height="70" fill="#a7f3d0" stroke="#10b981" stroke-width="2" rx="5" ry="5"/>
+    <text x="60" y="85" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#065f46">NFT</text>
+    <text x="60" y="100" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#065f46">Token</text>
+    
+    <!-- ZKP Icon -->
+    <circle cx="140" cy="85" r="30" fill="#a7f3d0" stroke="#10b981" stroke-width="2"/>
+    <text x="140" y="77" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#065f46">ZKP</text>
+    <text x="140" y="92" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#065f46">Privacy</text>
+    
+    <text x="100" y="140" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#065f46">Next.js Application</text>
+  </g>
+  
+  <!-- Algorand Blockchain -->
+  <g transform="translate(100, 400)">
+    <rect x="0" y="0" width="600" height="100" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="10" ry="10"/>
+    <text x="300" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#92400e">Algorand Blockchain</text>
+    
+    <!-- Blockchain Blocks -->
+    <rect x="50" y="50" width="40" height="30" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+    <rect x="100" y="50" width="40" height="30" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+    <rect x="150" y="50" width="40" height="30" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+    <rect x="200" y="50" width="40" height="30" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+    
+    <!-- Smart Contract -->
+    <rect x="320" y="45" width="200" height="40" fill="#fde68a" stroke="#f59e0b" stroke-width="2" rx="5" ry="5"/>
+    <text x="420" y="70" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#92400e">Smart Contracts</text>
+    
+    <!-- Chain Link -->
+    <path d="M250,65 L270,65 M280,65 L300,65" stroke="#f59e0b" stroke-width="3" stroke-dasharray="10,5"/>
+  </g>
+  
+  <!-- Arrows and Connections -->
+  <g>
+    <!-- User to Aadhaar -->
+    <path d="M170,180 L270,180" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+    <text x="220" y="170" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#4b5563">Authenticate</text>
+    
+    <!-- User to DigiLocker -->
+    <path d="M170,160 C220,120 420,120 470,160" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+    <text x="320" y="100" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#4b5563">Access Documents</text>
+    
+    <!-- Aadhaar to Consent Manager -->
+    <path d="M370,240 L370,300" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+    <text x="390" y="270" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#4b5563">Verify Identity</text>
+    
+    <!-- DigiLocker to Consent Manager -->
+    <path d="M570,240 L570,300 L500,300" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+    <text x="590" y="270" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#4b5563">Fetch Documents</text>
+    
+    <!-- User to Consent Manager -->
+    <path d="M170,230 L300,310" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+    <text x="210" y="270" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#4b5563">Grant/Revoke Consent</text>
+    
+    <!-- Consent Manager to Blockchain -->
+    <path d="M400,450 L400,400" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+    <text x="420" y="430" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#4b5563">Store Consent NFTs</text>
+  </g>
+  
+  <!-- Arrowhead Marker Definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4b5563"/>
+    </marker>
+  </defs>
+  
+  <!-- Legend -->
+  <g transform="translate(650, 500)">
+    <rect x="0" y="0" width="120" height="80" fill="white" stroke="#e5e7eb" stroke-width="1" rx="5" ry="5"/>
+    <text x="60" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#111827">Legend</text>
+    
+    <rect x="10" y="35" width="15" height="15" fill="#d1fae5" stroke="#10b981" stroke-width="1"/>
+    <text x="35" y="48" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#111827">Application</text>
+    
+    <rect x="10" y="60" width="15" height="15" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+    <text x="35" y="73" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#111827">Blockchain</text>
+  </g>
+</svg> 
