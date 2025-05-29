@@ -1,0 +1,34 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import WhatIsConsentChain from './components/WhatIsConsentChain';
+import HowItWorks from './components/HowItWorks';
+import Comparison from './components/Comparison';
+import FrontendModules from './components/FrontendModules';
+import { WalletProvider } from './context/WalletContext';
+
+function App() {
+  return (
+    <WalletProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-50">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <WhatIsConsentChain />
+                <HowItWorks />
+                <Comparison />
+                <FrontendModules />
+              </>
+            } />
+          </Routes>
+        </div>
+      </Router>
+    </WalletProvider>
+  );
+}
+
+export default App; 
