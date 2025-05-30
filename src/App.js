@@ -7,17 +7,19 @@ import HowItWorks from './components/HowItWorks';
 import Comparison from './components/Comparison';
 import FrontendModules from './components/FrontendModules';
 import { WalletProvider } from './context/WalletContext';
+import Features from './components/Features';
 
 function App() {
   return (
     <WalletProvider>
       <Router>
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-900">
           <Navbar />
           <Routes>
             <Route path="/" element={
               <>
                 <Hero />
+                <Features />
                 <WhatIsConsentChain />
                 <HowItWorks />
                 <Comparison />
