@@ -1,35 +1,31 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Hero from './components/Hero';
-import WhatIsConsentChain from './components/WhatIsConsentChain';
-import HowItWorks from './components/HowItWorks';
-import Comparison from './components/Comparison';
-import FrontendModules from './components/FrontendModules';
-import { WalletProvider } from './context/WalletContext';
 import Features from './components/Features';
+import Navbar from './components/Navbar';
+import RequestConsent from './pages/RequestConsent';
+import GiveConsent from './pages/GiveConsent';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <WalletProvider>
-      <Router>
-        <div className="min-h-screen bg-gray-900">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <Features />
-                <WhatIsConsentChain />
-                <HowItWorks />
-                <Comparison />
-                <FrontendModules />
-              </>
-            } />
-          </Routes>
-        </div>
-      </Router>
-    </WalletProvider>
+    <Router>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <Features />
+            </>
+          } />
+          <Route path="/request-consent" element={<RequestConsent />} />
+          <Route path="/give-consent" element={<GiveConsent />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
