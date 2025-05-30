@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -51,13 +52,48 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      'process/browser': path.resolve(__dirname, 'node_modules/process/browser.js')
+    },
+    fallback: {
+      "process": require.resolve("process/browser"),
+      "stream": require.resolve("stream-browserify"),
+      "crypto": require.resolve("crypto-browserify"),
+      "buffer": require.resolve("buffer/"),
+      "path": require.resolve("path-browserify"),
+      "os": require.resolve("os-browserify/browser"),
+      "fs": false,
+      "net": false,
+      "tls": false,
+      "zlib": false,
+      "http": require.resolve("stream-http"),
+      "https": require.resolve("https-browserify"),
+      "assert": require.resolve("assert/"),
+      "url": require.resolve("url/"),
+      "util": require.resolve("util/"),
+      "constants": require.resolve("constants-browserify"),
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html'
-    })
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+      Buffer: ['buffer', 'Buffer'],
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env)
+    }),
+    new webpack.NormalModuleReplacementPlugin(
+      /process\/browser/,
+      require.resolve('process/browser.js')
+    ),
   ],
+  experiments: {
+    topLevelAwait: true
+  },
   devServer: {
     port: 3001,
     hot: true,

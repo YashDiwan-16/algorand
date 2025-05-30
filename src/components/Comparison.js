@@ -1,12 +1,43 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 function Comparison() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
+  const controls = useAnimation();
+  const ref = React.useRef(null);
+  const inView = useInView(ref, {
+    threshold: 0.2,
+    triggerOnce: false
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
   };
 
   const features = [
@@ -97,13 +128,15 @@ function Comparison() {
     <div className="py-12 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
+          ref={ref}
           className="lg:text-center"
-          initial="initial"
-          animate="animate"
-          variants={fadeInUp}
+          initial="hidden"
+          animate={controls}
+          variants={containerVariants}
         >
           <motion.h2 
             className="text-base text-primary-400 font-semibold tracking-wide uppercase"
+            variants={itemVariants}
             animate={{
               color: ['#60A5FA', '#3B82F6', '#2563EB'],
             }}
@@ -117,6 +150,7 @@ function Comparison() {
           </motion.h2>
           <motion.p 
             className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl"
+            variants={itemVariants}
             animate={{
               textShadow: [
                 '0 0 8px rgba(59, 130, 246, 0.5)',
@@ -134,6 +168,7 @@ function Comparison() {
           </motion.p>
           <motion.p 
             className="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto"
+            variants={itemVariants}
             animate={{
               opacity: [0.7, 1, 0.7],
             }}
@@ -149,111 +184,97 @@ function Comparison() {
 
         <motion.div 
           className="mt-10"
-          initial="initial"
-          animate="animate"
-          variants={fadeInUp}
+          initial="hidden"
+          animate={controls}
+          variants={containerVariants}
         >
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence>
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.name}
-                  className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300"
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0, 
-                    scale: 1,
-                    boxShadow: [
-                      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                      '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-                      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                    ],
-                  }}
-                  transition={{ 
-                    delay: index * 0.1,
-                    duration: 0.5,
-                  }}
-                  whileHover={{ 
-                    scale: 1.02,
-                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                  }}
+                  variants={itemVariants}
+                  className="relative group"
                 >
-                  <motion.div 
-                    className={`flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r ${feature.color} text-white mb-4`}
-                    animate={{
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                    }}
-                  >
-                    {feature.icon}
-                  </motion.div>
-                  <motion.h3 
-                    className="text-lg font-medium text-white mb-2"
-                    animate={{
-                      textShadow: [
-                        '0 0 8px rgba(255, 255, 255, 0.5)',
-                        '0 0 16px rgba(255, 255, 255, 0.5)',
-                        '0 0 8px rgba(255, 255, 255, 0.5)',
-                      ],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                    }}
-                  >
-                    {feature.name}
-                  </motion.h3>
-                  <motion.p 
-                    className="text-sm text-gray-300 mb-4"
-                    animate={{
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                    }}
-                  >
-                    {feature.description}
-                  </motion.p>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex-1">
-                      <motion.div 
-                        className="flex items-center"
-                        animate={{
-                          x: [0, -5, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatType: 'reverse',
-                        }}
-                      >
-                        <XMarkIcon className="h-5 w-5 text-red-500 mr-2" />
-                        <span className="text-sm text-gray-400">Traditional</span>
-                      </motion.div>
-                    </div>
-                    <div className="flex-1">
-                      <motion.div 
-                        className="flex items-center"
-                        animate={{
-                          x: [0, 5, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatType: 'reverse',
-                        }}
-                      >
-                        <CheckIcon className="h-5 w-5 text-green-500 mr-2" />
-                        <span className="text-sm text-gray-400">ConsentChain</span>
-                      </motion.div>
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                  <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-8 hover:shadow-2xl transition-all duration-300">
+                    <motion.div 
+                      className={`flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-r ${feature.color} text-white mb-6`}
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: 'reverse',
+                      }}
+                    >
+                      {feature.icon}
+                    </motion.div>
+                    <motion.h3 
+                      className="text-xl font-bold text-white mb-4"
+                      animate={{
+                        textShadow: [
+                          '0 0 8px rgba(255, 255, 255, 0.5)',
+                          '0 0 16px rgba(255, 255, 255, 0.5)',
+                          '0 0 8px rgba(255, 255, 255, 0.5)',
+                        ],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: 'reverse',
+                      }}
+                    >
+                      {feature.name}
+                    </motion.h3>
+                    <motion.p 
+                      className="text-base text-gray-300 leading-relaxed mb-6"
+                      animate={{
+                        opacity: [0.7, 1, 0.7],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: 'reverse',
+                      }}
+                    >
+                      {feature.description}
+                    </motion.p>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-1">
+                        <motion.div 
+                          className="flex items-center"
+                          animate={{
+                            x: [0, -5, 0],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatType: 'reverse',
+                          }}
+                        >
+                          <XMarkIcon className="h-5 w-5 text-red-500 mr-2" />
+                          <span className="text-sm text-gray-400">Traditional</span>
+                        </motion.div>
+                      </div>
+                      <div className="flex-1">
+                        <motion.div 
+                          className="flex items-center"
+                          animate={{
+                            x: [0, 5, 0],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatType: 'reverse',
+                          }}
+                        >
+                          <CheckIcon className="h-5 w-5 text-green-500 mr-2" />
+                          <span className="text-sm text-gray-400">ConsentChain</span>
+                        </motion.div>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
