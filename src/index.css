@@ -6,15 +6,32 @@
   --primary: #4F46E5;
   --primary-dark: #3730A3;
   --primary-light: #6366F1;
+  --primary-darker: #2E2B8C;
+  --primary-lighter: #818CF8;
+  
   --secondary: #10B981;
   --secondary-dark: #059669;
   --secondary-light: #34D399;
+  --secondary-darker: #047857;
+  --secondary-lighter: #6EE7B7;
+  
+  --accent: #F59E0B;
+  --accent-dark: #D97706;
+  --accent-light: #FBBF24;
+  --accent-darker: #B45309;
+  --accent-lighter: #FCD34D;
+  
   --dark: #111827;
   --dark-lighter: #1F2937;
   --dark-light: #374151;
+  --dark-darker: #030712;
+  --dark-darkest: #000000;
+  
   --light: #F9FAFB;
   --light-darker: #F3F4F6;
   --light-dark: #E5E7EB;
+  --light-lighter: #FFFFFF;
+  --light-lightest: #FFFFFF;
 }
 
 @layer base {
@@ -39,11 +56,15 @@
   }
   
   .btn-primary {
-    @apply bg-primary hover:bg-primary-dark text-white;
+    @apply bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/20;
   }
   
   .btn-secondary {
-    @apply bg-secondary hover:bg-secondary-dark text-white;
+    @apply bg-secondary hover:bg-secondary-dark text-white shadow-lg shadow-secondary/20;
+  }
+  
+  .btn-accent {
+    @apply bg-accent hover:bg-accent-dark text-white shadow-lg shadow-accent/20;
   }
   
   .btn-outline {
@@ -52,6 +73,14 @@
   
   .card {
     @apply bg-dark-lighter rounded-xl p-6 shadow-lg;
+  }
+  
+  .card-gradient {
+    @apply bg-card-gradient rounded-xl p-6 shadow-lg;
+  }
+  
+  .card-accent {
+    @apply bg-accent-gradient rounded-xl p-6 shadow-lg;
   }
   
   .input {
@@ -70,16 +99,20 @@
     @apply bg-hero-pattern;
   }
   
-  .card-gradient {
-    @apply bg-card-gradient;
-  }
-
   .section-title {
-    @apply text-4xl font-bold text-gray-900 dark:text-white mb-4;
+    @apply text-4xl font-bold gradient-text mb-4;
   }
 
   .section-subtitle {
-    @apply text-xl text-gray-600 dark:text-gray-300 mb-8;
+    @apply text-xl text-light-darker mb-8;
+  }
+  
+  .nav-link {
+    @apply text-light-darker hover:text-light transition-colors duration-200;
+  }
+  
+  .nav-link-active {
+    @apply text-primary font-medium;
   }
 }
 
