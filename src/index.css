@@ -2,34 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #4F46E5;
+  --primary-dark: #3730A3;
+  --primary-light: #6366F1;
+  --secondary: #10B981;
+  --secondary-dark: #059669;
+  --secondary-light: #34D399;
+  --dark: #111827;
+  --dark-lighter: #1F2937;
+  --dark-light: #374151;
+  --light: #F9FAFB;
+  --light-darker: #F3F4F6;
+  --light-dark: #E5E7EB;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   
-body {
-    @apply bg-gray-900 text-white;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  body {
+    @apply bg-dark text-light;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  }
+  
   .btn-primary {
-    @apply px-6 py-3 bg-primary-600 text-white rounded-lg font-semibold 
-           hover:bg-primary-700 transition-colors duration-200 
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply bg-primary hover:bg-primary-dark text-white;
   }
   
   .btn-secondary {
-    @apply px-6 py-3 bg-white text-primary-600 rounded-lg font-semibold 
-           hover:bg-gray-50 transition-colors duration-200 
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
-           border border-primary-600;
+    @apply bg-secondary hover:bg-secondary-dark text-white;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  .card {
+    @apply bg-dark-lighter rounded-xl p-6 shadow-lg;
+  }
+  
+  .input {
+    @apply bg-dark-light border border-dark-lighter rounded-lg px-4 py-2 text-light focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient-x;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-r from-primary to-secondary animate-gradient-x;
+  }
+  
+  .hero-gradient {
+    @apply bg-hero-pattern;
+  }
+  
+  .card-gradient {
+    @apply bg-card-gradient;
   }
 
   .section-title {
