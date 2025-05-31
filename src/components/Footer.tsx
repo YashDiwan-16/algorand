@@ -1,14 +1,22 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
-function Footer() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
-  };
+interface Link {
+  name: string;
+  href: string;
+}
 
-  const links = [
+interface SocialLink extends Link {
+  icon: React.ReactNode;
+}
+
+const fadeInUp: Variants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 }
+};
+
+const Footer: React.FC = () => {
+  const links: Link[] = [
     {
       name: 'About',
       href: '#',
@@ -27,7 +35,7 @@ function Footer() {
     },
   ];
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     {
       name: 'Twitter',
       href: '#',
@@ -202,12 +210,12 @@ function Footer() {
               repeatType: 'reverse',
             }}
           >
-            &copy; {new Date().getFullYear()} ConsentChain. All rights reserved.
+            © {new Date().getFullYear()} ConsentChain. All rights reserved.
           </motion.p>
         </motion.div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer; 
