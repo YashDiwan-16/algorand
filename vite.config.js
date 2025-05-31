@@ -18,18 +18,17 @@ export default defineConfig({
       define: {
         global: 'globalThis',
       },
-      loader: {
-        '.js': 'jsx',
-      },
     },
-  },
-  esbuild: {
-    loader: 'jsx',
-    include: /src\/.*\.jsx?$/,
-    exclude: [],
   },
   server: {
     port: 3001,
     open: true,
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'src/index.tsx'),
+      },
+    },
   },
 });

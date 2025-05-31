@@ -2,17 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { WalletProvider, useWallet } from './context/WalletContext';
-import Hero from './components/Hero.js';
-import WhatIsConsentChain from './components/WhatIsConsentChain.js';
-import HowItWorks from './components/HowItWorks.js';
-import UseCases from './components/UseCases.tsx';
-import Comparison from './components/Comparison.js';
-import ConsentRecord from './components/ConsentRecord.tsx';
-import FrontendModules from './components/FrontendModules.js';
-import TechStack from './components/TechStack.tsx';
-import WhoCanUse from './components/WhoCanUse.tsx';
-import Vision from './components/Vision.tsx';
-import Footer from './components/Footer.js';
+import Hero from './components/Hero';
+import WhatIsConsentChain from './components/WhatIsConsentChain';
+import HowItWorks from './components/HowItWorks';
+import UseCases from './components/UseCases';
+import Comparison from './components/Comparison';
+import ConsentRecord from './components/ConsentRecord';
+import FrontendModules from './components/FrontendModules';
+import TechStack from './components/TechStack';
+import WhoCanUse from './components/WhoCanUse';
+import Vision from './components/Vision';
+import Footer from './components/Footer';
 import Dashboard from './pages/Dashboard';
 import RequestConsent from './pages/RequestConsent';
 import GiveConsent from './pages/GiveConsent';
@@ -22,14 +22,16 @@ interface NavLinkProps {
   children: React.ReactNode;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ to, children }) => (
-  <Link
-    to={to}
-    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-  >
-    {children}
-  </Link>
-);
+const NavLink = ({ to, children }: NavLinkProps) => {
+  return (
+    <Link
+      to={to}
+      className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+    >
+      {children}
+    </Link>
+  );
+};
 
 const Navbar: React.FC = () => {
   const { isConnectedToPeraWallet, connectWallet, disconnectWallet, accountAddress } = useWallet();
