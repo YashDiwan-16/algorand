@@ -1,0 +1,168 @@
+#pragma version 6
+txn ApplicationID
+int 0
+==
+bnz main_l18
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l17
+txn OnCompletion
+int UpdateApplication
+==
+bnz main_l16
+txn OnCompletion
+int CloseOut
+==
+bnz main_l15
+txn OnCompletion
+int OptIn
+==
+bnz main_l14
+txna ApplicationArgs 0
+byte "request_consent"
+==
+bnz main_l13
+txna ApplicationArgs 0
+byte "grant_consent"
+==
+bnz main_l12
+txna ApplicationArgs 0
+byte "revoke_consent"
+==
+bnz main_l11
+txna ApplicationArgs 0
+byte "view_document"
+==
+bnz main_l10
+err
+main_l10:
+byte "status"
+app_global_get
+byte "granted"
+==
+assert
+byte "expiry"
+app_global_get
+global LatestTimestamp
+>
+assert
+txn Sender
+byte "owner"
+app_global_get
+==
+txn Sender
+byte "requester"
+app_global_get
+==
+||
+assert
+int 1
+return
+main_l11:
+txn Sender
+byte "owner"
+app_global_get
+==
+txn Sender
+byte "requester"
+app_global_get
+==
+||
+assert
+byte "status"
+app_global_get
+byte "granted"
+==
+assert
+byte "status"
+byte "revoked"
+app_global_put
+int 1
+return
+main_l12:
+txn Sender
+byte "owner"
+app_global_get
+==
+assert
+byte "status"
+app_global_get
+byte "pending"
+==
+assert
+txna ApplicationArgs 1
+byte ""
+!=
+assert
+txna ApplicationArgs 2
+byte ""
+!=
+assert
+byte "status"
+byte "granted"
+app_global_put
+byte "expiry"
+txna ApplicationArgs 1
+btoi
+app_global_put
+byte "permissions"
+txna ApplicationArgs 2
+app_global_put
+int 1
+return
+main_l13:
+txna ApplicationArgs 1
+byte ""
+!=
+assert
+txna ApplicationArgs 2
+byte ""
+!=
+assert
+txna ApplicationArgs 3
+byte ""
+!=
+assert
+txna ApplicationArgs 4
+byte ""
+!=
+assert
+byte "document_hash"
+txna ApplicationArgs 1
+app_global_put
+byte "document_type"
+txna ApplicationArgs 2
+app_global_put
+byte "request_id"
+txna ApplicationArgs 3
+app_global_put
+byte "requester"
+txna ApplicationArgs 4
+app_global_put
+byte "status"
+byte "pending"
+app_global_put
+int 1
+return
+main_l14:
+int 1
+return
+main_l15:
+int 1
+return
+main_l16:
+txn Sender
+byte "owner"
+app_global_get
+==
+return
+main_l17:
+txn Sender
+byte "owner"
+app_global_get
+==
+return
+main_l18:
+int 1
+return
