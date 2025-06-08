@@ -1,7 +1,7 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
-  WalletIcon,
   PlayIcon,
   CodeBracketIcon,
   ChatBubbleLeftRightIcon,
@@ -10,7 +10,7 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
 
-const Vision = () => {
+const Vision: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -57,11 +57,11 @@ const Vision = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary-100 dark:bg-primary-900/20 rounded-full filter blur-3xl"
+          className="absolute top-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -73,7 +73,7 @@ const Vision = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-primary-200 dark:bg-primary-800/20 rounded-full filter blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.4, 0.6, 0.4],
@@ -96,33 +96,13 @@ const Vision = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl font-bold text-gray-900 dark:text-white mb-6"
-            animate={{
-              textShadow: [
-                '0 0 8px rgba(59, 130, 246, 0.5)',
-                '0 0 16px rgba(59, 130, 246, 0.5)',
-                '0 0 8px rgba(59, 130, 246, 0.5)',
-              ],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
+            className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-6"
           >
             Our Vision
           </motion.h2>
           <motion.blockquote
             variants={itemVariants}
-            className="max-w-3xl mx-auto text-2xl font-light text-gray-600 dark:text-gray-300 italic mb-8"
-            animate={{
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
+            className="max-w-3xl mx-auto text-2xl font-light text-gray-300 italic mb-8"
           >
             "We envision a future where giving consent is as easy as sending a message — but far more secure and transparent."
           </motion.blockquote>
@@ -140,16 +120,16 @@ const Vision = () => {
               variants={itemVariants}
               className="group"
             >
-              <div className="h-full bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
+              <div className="h-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 hover:border-blue-500/50">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
-                    <feature.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
+                    <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-300">
                       {feature.description}
                     </p>
                   </div>
@@ -167,7 +147,7 @@ const Vision = () => {
         >
           <motion.h3
             variants={itemVariants}
-            className="text-2xl font-semibold text-gray-900 dark:text-white mb-8"
+            className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-8"
           >
             Join the Movement
           </motion.h3>
@@ -178,27 +158,7 @@ const Vision = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary flex items-center justify-center gap-2"
-              animate={{
-                boxShadow: [
-                  '0 0 0 0 rgba(59, 130, 246, 0.4)',
-                  '0 0 0 10px rgba(59, 130, 246, 0)',
-                  '0 0 0 0 rgba(59, 130, 246, 0.4)',
-                ],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: 'reverse',
-              }}
-            >
-              <WalletIcon className="w-5 h-5" />
-              Connect Wallet
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-secondary flex items-center justify-center gap-2"
+              className="px-6 py-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-white rounded-lg hover:border-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <PlayIcon className="w-5 h-5" />
               Explore Demo
@@ -206,7 +166,7 @@ const Vision = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary flex items-center justify-center gap-2"
+              className="px-6 py-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-white rounded-lg hover:border-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <CodeBracketIcon className="w-5 h-5" />
               GitHub Repo
@@ -214,7 +174,7 @@ const Vision = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary flex items-center justify-center gap-2"
+              className="px-6 py-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-white rounded-lg hover:border-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <ChatBubbleLeftRightIcon className="w-5 h-5" />
               Join Discord
@@ -247,7 +207,7 @@ const Vision = () => {
                 }}
                 className="w-2 h-2 bg-green-500 rounded-full"
               />
-              <span className="text-gray-600 dark:text-gray-300">Open Source</span>
+              <span className="text-gray-300">Open Source</span>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -265,7 +225,7 @@ const Vision = () => {
                 }}
                 className="w-2 h-2 bg-green-500 rounded-full"
               />
-              <span className="text-gray-600 dark:text-gray-300">Community-Driven</span>
+              <span className="text-gray-300">Community-Driven</span>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -283,7 +243,7 @@ const Vision = () => {
                 }}
                 className="w-2 h-2 bg-green-500 rounded-full"
               />
-              <span className="text-gray-600 dark:text-gray-300">Data Ownership to the People</span>
+              <span className="text-gray-300">Data Ownership to the People</span>
             </motion.div>
           </motion.div>
         </motion.div>

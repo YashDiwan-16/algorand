@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  DocumentIcon, 
-  WalletIcon,
-  QrCodeIcon,
-  ClipboardDocumentCheckIcon,
-  ChartBarIcon
-} from '@heroicons/react/24/outline';
-import { useWallet } from '../context/WalletContext';
-import WalletQR from './WalletQR';
+import { DocumentIcon, WalletIcon } from '@heroicons/react/24/outline';
 
-const Navbar = () => {
-  const { isConnectedToPeraWallet, connectWallet, disconnectWallet, address } = useWallet();
+const Navbar: React.FC = () => {
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
   const [isDigiLockerConnected, setIsDigiLockerConnected] = useState(false);
-  const [showQR, setShowQR] = useState(false);
+
+  const handleWalletConnect = () => {
+    // Mock wallet connection
+    setIsWalletConnected(true);
+  };
 
   const handleDigiLockerConnect = async () => {
     // Mock DigiLocker connection
@@ -37,25 +33,9 @@ const Navbar = () => {
             <Link to="/" className="text-gray-300 hover:text-white transition-colors">
               Home
             </Link>
-            {isConnectedToPeraWallet && (
-              <>
-                <Link to="/documents" className="text-gray-300 hover:text-white transition-colors">
-                  Documents
-                </Link>
-                <Link to="/request-consent" className="text-gray-300 hover:text-white transition-colors">
-                  Request Consent
-                </Link>
-                <Link to="/grant-consent" className="text-gray-300 hover:text-white transition-colors">
-                  Grant Consent
-                </Link>
-                <Link to="/scan-qr" className="text-gray-300 hover:text-white transition-colors">
-                  Scan QR
-                </Link>
-                <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-                  Dashboard
-                </Link>
-              </>
-            )}
+            <Link to="/documents" className="text-gray-300 hover:text-white transition-colors">
+              Documents
+            </Link>
             <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
               About
             </Link>
@@ -66,14 +46,14 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={isConnectedToPeraWallet ? disconnectWallet : connectWallet}
+              onClick={handleWalletConnect}
               className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <WalletIcon className="w-5 h-5" />
-              {isConnectedToPeraWallet ? 'Disconnect Wallet' : 'Connect Pera Wallet'}
+              {isWalletConnected ? 'Connected' : 'Connect Wallet'}
             </motion.button>
 
-            {isConnectedToPeraWallet && (
+            {isWalletConnected && (
               <motion.button
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -85,29 +65,6 @@ const Navbar = () => {
                 <DocumentIcon className="w-5 h-5" />
                 {isDigiLockerConnected ? 'DigiLocker Connected' : 'Connect DigiLocker'}
               </motion.button>
-            )}
-
-            {isConnectedToPeraWallet && (
-              <div className="relative">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setShowQR(!showQR)}
-                  className="p-2 text-gray-300 hover:text-white transition-colors"
-                >
-                  <QrCodeIcon className="w-6 h-6" />
-                </motion.button>
-                {showQR && (
-                  <div className="absolute right-0 mt-2 z-50">
-                    <WalletQR
-                      showShareButtons={true}
-                      isNavbar={true}
-                      showQR={showQR}
-                      onClose={() => setShowQR(false)}
-                    />
-                  </div>
-                )}
-              </div>
             )}
           </div>
         </div>

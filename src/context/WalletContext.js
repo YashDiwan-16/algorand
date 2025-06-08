@@ -1,62 +1,76 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { PeraWalletConnect } from "@perawallet/connect";
+import { PeraWalletConnect } from '@perawallet/connect';
 
 const WalletContext = createContext();
 
-// Create the PeraWalletConnect instance outside of the component
-const peraWallet = new PeraWalletConnect();
+export const useWallet = () => {
+  const context = useContext(WalletContext);
+  if (!context) {
+    throw new Error('useWallet must be used within a WalletProvider');
+  }
+  return context;
+};
 
-export function WalletProvider({ children }) {
-  const [accountAddress, setAccountAddress] = useState(null);
-  const isConnectedToPeraWallet = !!accountAddress;
+export const WalletProvider = ({ children }) => {
+  const [isConnectedToPeraWallet, setIsConnectedToPeraWallet] = useState(false);
+  const [peraWallet, setPeraWallet] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [address, setAddress] = useState(null);
 
   useEffect(() => {
-    // Reconnect to the session when the component is mounted
-    peraWallet.reconnectSession().then((accounts) => {
-      // Setup the disconnect event listener
-      peraWallet.connector?.on("disconnect", handleDisconnectWalletClick);
+    const peraWalletInstance = new PeraWalletConnect();
+    setPeraWallet(peraWalletInstance);
 
-      if (accounts.length) {
-        setAccountAddress(accounts[0]);
+    // Check if already connected
+    const checkConnection = async () => {
+      try {
+        const accounts = await peraWalletInstance.reconnectSession();
+        if (accounts.length > 0) {
+          setAccounts(accounts);
+          setAddress(accounts[0]);
+          setIsConnectedToPeraWallet(true);
       }
-    }).catch(error => {
-      console.log(error);
-    });
+      } catch (error) {
+        console.error('Error checking Pera Wallet connection:', error);
+      }
+    };
+
+    checkConnection();
   }, []);
 
-  const handleConnectWalletClick = () => {
-    peraWallet
-      .connect()
-      .then((newAccounts) => {
-        // Setup the disconnect event listener
-        peraWallet.connector?.on("disconnect", handleDisconnectWalletClick);
-        setAccountAddress(newAccounts[0]);
-      })
-      .catch((error) => {
-        if (error?.data?.type !== "CONNECT_MODAL_CLOSED") {
-          console.error("Error connecting to Pera Wallet:", error);
-        }
-      });
+  const connectWallet = async () => {
+    try {
+      const accounts = await peraWallet.connect();
+      setAccounts(accounts);
+      setAddress(accounts[0]);
+      setIsConnectedToPeraWallet(true);
+    } catch (error) {
+      console.error('Error connecting to Pera Wallet:', error);
+    }
   };
 
-  const handleDisconnectWalletClick = () => {
-    peraWallet.disconnect();
-    setAccountAddress(null);
+  const disconnectWallet = async () => {
+    try {
+      await peraWallet.disconnect();
+      setAccounts([]);
+      setAddress(null);
+      setIsConnectedToPeraWallet(false);
+    } catch (error) {
+      console.error('Error disconnecting from Pera Wallet:', error);
+        }
+  };
+
+  const value = {
+    isConnectedToPeraWallet,
+    accounts,
+    address,
+    connectWallet,
+    disconnectWallet,
   };
 
   return (
-    <WalletContext.Provider value={{
-      accountAddress,
-      isConnectedToPeraWallet,
-      handleConnectWalletClick,
-      handleDisconnectWalletClick,
-      peraWallet
-    }}>
+    <WalletContext.Provider value={value}>
       {children}
     </WalletContext.Provider>
   );
-}
-
-export function useWallet() {
-  return useContext(WalletContext);
-} 
+}; 

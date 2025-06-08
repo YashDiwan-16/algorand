@@ -1,9 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import HeroAnimation from './animations/HeroAnimation';
 import WalletConnect from './WalletConnect';
 import { useWallet } from '../context/WalletContext';
-import { ClipboardDocumentListIcon, ChartBarIcon, DocumentCheckIcon } from '@heroicons/react/24/outline';
+import { 
+  ClipboardDocumentListIcon, 
+  ChartBarIcon, 
+  DocumentCheckIcon,
+  QrCodeIcon 
+} from '@heroicons/react/24/outline';
 
 function Hero() {
   const { isConnectedToPeraWallet } = useWallet();
@@ -133,23 +139,20 @@ function Hero() {
                     </motion.div>
                   </>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-4xl">
                     <motion.div
                       variants={buttonVariants}
                       initial="initial"
                       whileHover="hover"
                       whileTap="tap"
                     >
-                      <motion.a
-                        href="#request-consent"
+                      <Link
+                        to="/request-consent"
                         className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300"
-                        whileHover={{
-                          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                        }}
                       >
                         <ClipboardDocumentListIcon className="h-6 w-6 mr-2" />
                         Request Consent
-                      </motion.a>
+                      </Link>
                     </motion.div>
                     <motion.div
                       variants={buttonVariants}
@@ -157,16 +160,13 @@ function Hero() {
                       whileHover="hover"
                       whileTap="tap"
                     >
-                      <motion.a
-                        href="#give-consent"
+                      <Link
+                        to="/grant-consent"
                         className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg hover:shadow-xl transition-all duration-300"
-                        whileHover={{
-                          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                        }}
                       >
                         <DocumentCheckIcon className="h-6 w-6 mr-2" />
-                        Give Consent
-                      </motion.a>
+                        Grant Consent
+                      </Link>
                     </motion.div>
                     <motion.div
                       variants={buttonVariants}
@@ -174,16 +174,27 @@ function Hero() {
                       whileHover="hover"
                       whileTap="tap"
                     >
-                      <motion.a
-                        href="#dashboard"
+                      <Link
+                        to="/scan-qr"
                         className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
-                        whileHover={{
-                          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                        }}
+                      >
+                        <QrCodeIcon className="h-6 w-6 mr-2" />
+                        Scan QR
+                      </Link>
+                    </motion.div>
+                    <motion.div
+                      variants={buttonVariants}
+                      initial="initial"
+                      whileHover="hover"
+                      whileTap="tap"
+                    >
+                      <Link
+                        to="/dashboard"
+                        className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
                       >
                         <ChartBarIcon className="h-6 w-6 mr-2" />
                         Dashboard
-                      </motion.a>
+                      </Link>
                     </motion.div>
                   </div>
                 )}
