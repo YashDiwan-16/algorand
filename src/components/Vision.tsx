@@ -57,29 +57,41 @@ const Vision: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden min-h-screen flex items-center">
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl"
+          className="absolute top-1/4 right-1/4 w-80 h-80 bg-primary-500/10 rounded-full filter blur-3xl"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
-            duration: 8,
+            duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.6, 0.4],
+            scale: [1.3, 1, 1.3],
+            opacity: [0.3, 0.5, 0.3],
           }}
           transition={{
-            duration: 10,
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/5 rounded-full filter blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -92,17 +104,17 @@ const Vision: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-6"
+            className="section-title"
           >
             Our Vision
           </motion.h2>
           <motion.blockquote
             variants={itemVariants}
-            className="max-w-3xl mx-auto text-2xl font-light text-gray-300 italic mb-8"
+            className="max-w-4xl mx-auto text-3xl font-light text-gray-200 italic mb-12 leading-relaxed"
           >
             "We envision a future where giving consent is as easy as sending a message — but far more secure and transparent."
           </motion.blockquote>
@@ -112,7 +124,7 @@ const Vision: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
         >
           {features.map((feature, index) => (
             <motion.div
@@ -120,16 +132,16 @@ const Vision: React.FC = () => {
               variants={itemVariants}
               className="group"
             >
-              <div className="h-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 hover:border-blue-500/50">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
-                    <feature.icon className="w-6 h-6 text-white" />
+              <div className="card-premium h-full">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-glow">
+                    <feature.icon className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2">
+                    <h3 className="text-2xl font-semibold text-gradient mb-4">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-300">
+                    <p className="text-gray-200 text-lg leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -147,36 +159,36 @@ const Vision: React.FC = () => {
         >
           <motion.h3
             variants={itemVariants}
-            className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-8"
+            className="text-3xl font-semibold text-gradient mb-12"
           >
             Join the Movement
           </motion.h3>
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-6 justify-center"
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-white rounded-lg hover:border-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
+              className="btn-primary flex items-center justify-center gap-3"
             >
-              <PlayIcon className="w-5 h-5" />
+              <PlayIcon className="w-6 h-6" />
               Explore Demo
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-white rounded-lg hover:border-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
+              className="btn-secondary flex items-center justify-center gap-3"
             >
-              <CodeBracketIcon className="w-5 h-5" />
+              <CodeBracketIcon className="w-6 h-6" />
               GitHub Repo
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-white rounded-lg hover:border-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
+              className="btn-accent flex items-center justify-center gap-3"
             >
-              <ChatBubbleLeftRightIcon className="w-5 h-5" />
+              <ChatBubbleLeftRightIcon className="w-6 h-6" />
               Join Discord
             </motion.button>
           </motion.div>
@@ -186,64 +198,61 @@ const Vision: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mt-12 text-center"
+          className="mt-20 text-center"
         >
           <motion.div
             variants={itemVariants}
-            className="flex justify-center gap-8"
+            className="flex justify-center gap-12"
           >
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
             >
               <motion.div
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut",
                 }}
-                className="w-2 h-2 bg-green-500 rounded-full"
+                className="w-4 h-4 bg-primary-400 rounded-full"
               />
-              <span className="text-gray-300">Open Source</span>
+              <span className="text-gray-300 font-medium">Open Source</span>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
             >
               <motion.div
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.3,
+                  delay: 0.5,
                 }}
-                className="w-2 h-2 bg-green-500 rounded-full"
+                className="w-4 h-4 bg-secondary-400 rounded-full"
               />
-              <span className="text-gray-300">Community-Driven</span>
+              <span className="text-gray-300 font-medium">Privacy First</span>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
             >
               <motion.div
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.6,
+                  delay: 1,
                 }}
-                className="w-2 h-2 bg-green-500 rounded-full"
+                className="w-4 h-4 bg-accent-400 rounded-full"
               />
-              <span className="text-gray-300">Data Ownership to the People</span>
+              <span className="text-gray-300 font-medium">Community Driven</span>
             </motion.div>
           </motion.div>
         </motion.div>
