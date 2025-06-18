@@ -16,21 +16,43 @@ import WhoCanUse from './components/WhoCanUse';
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <Navbar />
-        <div className="pt-16"> {/* Add padding-top to account for fixed navbar */}
-          <Routes>
-            <Route path="/" element={<Vision />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/about" element={<div className="container mx-auto px-4 py-20">
-              <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                About Us
-              </h1>
-              {/* Add About page content here */}
-            </div>} />
-          </Routes>
+      <div className="min-h-screen bg-gradient-to-br from-premium-900 via-premium-800 to-premium-900 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-accent-500/20 to-primary-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-secondary-500/10 to-accent-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
         </div>
-    </div>
+        
+        {/* Glass morphism overlay */}
+        <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
+        
+        {/* Main content */}
+        <div className="relative z-10">
+          <Navbar />
+          <div className="pt-16">
+            <Routes>
+              <Route path="/" element={<Vision />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/about" element={
+                <div className="container mx-auto px-4 py-20">
+                  <div className="max-w-4xl mx-auto">
+                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-elegant">
+                      <h1 className="text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 mb-6">
+                        About Us
+                      </h1>
+                      <p className="text-xl text-gray-200 leading-relaxed">
+                        We are revolutionizing data consent management through blockchain technology, 
+                        making it secure, transparent, and user-friendly.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              } />
+            </Routes>
+          </div>
+        </div>
+      </div>
     </Router>
   );
 };
