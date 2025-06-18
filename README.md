@@ -286,3 +286,9 @@ ConsentChain now offers a seamless integration with Telegram! You can interact w
   - And more—all from Telegram!
 
 To get started, visit the new **Telegram Bot** page in the app navigation or [click here](https://t.me/consent_bot).
+
+## FAQ
+
+### How do I use the ConsentChain Telegram bot?
+
+Visit the new **Telegram Bot** page in the app or go to [@consent_bot](https://t.me/consent_bot) on Telegram. Follow the instructions to link your account and manage your data consents directly from Telegram.
