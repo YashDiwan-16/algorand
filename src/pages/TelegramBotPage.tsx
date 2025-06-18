@@ -36,6 +36,15 @@ const TelegramBotPage: React.FC = () => {
         >
           Interact with ConsentChain directly from Telegram! Use our <span className="font-semibold text-gradient">@consent_bot</span> to manage your data consents, receive notifications, and more—all from your favorite messaging app.
         </motion.p>
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold text-gradient mb-4">How to Use</h2>
+          <ol className="list-decimal list-inside text-left text-lg text-gray-200 space-y-2 mx-auto max-w-xl">
+            <li>Click the <span className="font-semibold text-gradient">Open Consent Bot</span> button below.</li>
+            <li>Start a chat with <span className="font-semibold text-gradient">@consent_bot</span> on Telegram.</li>
+            <li>Follow the instructions sent by the bot to link your ConsentChain account.</li>
+            <li>Manage your data consents, receive notifications, and approve or reject requests—all from Telegram!</li>
+          </ol>
+        </div>
         <motion.a
           href={TELEGRAM_BOT_URL}
           target="_blank"
