@@ -12,6 +12,7 @@ import ConsentRecord from './components/ConsentRecord';
 import FrontendModules from './components/FrontendModules';
 import TechStack from './components/TechStack';
 import WhoCanUse from './components/WhoCanUse';
+import PremiumShowcase from './components/PremiumShowcase';
 
 const App: React.FC = () => {
   return (
@@ -32,7 +33,12 @@ const App: React.FC = () => {
           <Navbar />
           <div className="pt-16">
             <Routes>
-              <Route path="/" element={<Vision />} />
+              <Route path="/" element={
+                <>
+                  <Vision />
+                  <PremiumShowcase />
+                </>
+              } />
               <Route path="/documents" element={<Documents />} />
               <Route path="/about" element={
                 <div className="container mx-auto px-4 py-20">
