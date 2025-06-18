@@ -58,10 +58,40 @@ function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-premium-900 via-premium-800 to-premium-900"></div>
+      
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary-500/5 rounded-full filter blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary-500/5 rounded-full filter blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="xl:grid xl:grid-cols-3 xl:gap-8"
+          className="xl:grid xl:grid-cols-3 xl:gap-12"
           initial="initial"
           animate="animate"
           variants={fadeInUp}
@@ -69,41 +99,31 @@ function Footer() {
           <motion.div 
             className="space-y-8 xl:col-span-1"
             animate={{
-              opacity: [0.7, 1, 0.7],
+              opacity: [0.8, 1, 0.8],
             }}
             transition={{
-              duration: 2,
+              duration: 3,
               repeat: Infinity,
               repeatType: 'reverse',
             }}
           >
-            <motion.img
-              className="h-10"
-              src="/logo.svg"
-              alt="ConsentChain"
+            <motion.div
+              className="flex items-center"
               animate={{
                 scale: [1, 1.05, 1],
               }}
               transition={{
-                duration: 2,
+                duration: 3,
                 repeat: Infinity,
                 repeatType: 'reverse',
               }}
-            />
+            >
+              <span className="text-2xl font-display font-bold text-gradient">
+                ConsentChain
+              </span>
+            </motion.div>
             <motion.p 
-              className="text-gray-300 text-base"
-              animate={{
-                textShadow: [
-                  '0 0 8px rgba(255, 255, 255, 0.5)',
-                  '0 0 16px rgba(255, 255, 255, 0.5)',
-                  '0 0 8px rgba(255, 255, 255, 0.5)',
-                ],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: 'reverse',
-              }}
+              className="text-gray-200 text-lg leading-relaxed"
             >
               Making data sharing secure and transparent with blockchain technology.
             </motion.p>
@@ -112,8 +132,8 @@ function Footer() {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-400 hover:text-gray-300"
-                  whileHover={{ scale: 1.1 }}
+                  className="text-gray-300 hover:text-white transition-colors duration-300 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/10"
+                  whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <span className="sr-only">{item.name}</span>
@@ -123,33 +143,25 @@ function Footer() {
             </div>
           </motion.div>
           <motion.div 
-            className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2"
+            className="mt-12 grid grid-cols-2 gap-12 xl:mt-0 xl:col-span-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
             <div>
               <motion.h3 
-                className="text-sm font-semibold text-gray-400 tracking-wider uppercase"
-                animate={{
-                  color: ['#60A5FA', '#3B82F6', '#2563EB'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                }}
+                className="text-lg font-semibold text-gradient tracking-wider uppercase mb-6"
               >
                 Navigation
               </motion.h3>
-              <ul className="mt-4 space-y-4">
+              <ul className="space-y-4">
                 {links.map((item) => (
                   <motion.li
                     key={item.name}
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <a href={item.href} className="text-base text-gray-300 hover:text-white">
+                    <a href={item.href} className="text-gray-200 hover:text-white transition-colors duration-300 text-lg">
                       {item.name}
                     </a>
                   </motion.li>
@@ -158,26 +170,18 @@ function Footer() {
             </div>
             <div>
               <motion.h3 
-                className="text-sm font-semibold text-gray-400 tracking-wider uppercase"
-                animate={{
-                  color: ['#60A5FA', '#3B82F6', '#2563EB'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                }}
+                className="text-lg font-semibold text-gradient tracking-wider uppercase mb-6"
               >
                 Legal
               </motion.h3>
-              <ul className="mt-4 space-y-4">
+              <ul className="space-y-4">
                 <motion.li whileHover={{ x: 5 }} whileTap={{ scale: 0.95 }}>
-                  <a href="#" className="text-base text-gray-300 hover:text-white">
+                  <a href="#" className="text-gray-200 hover:text-white transition-colors duration-300 text-lg">
                     Privacy Policy
                   </a>
                 </motion.li>
                 <motion.li whileHover={{ x: 5 }} whileTap={{ scale: 0.95 }}>
-                  <a href="#" className="text-base text-gray-300 hover:text-white">
+                  <a href="#" className="text-gray-200 hover:text-white transition-colors duration-300 text-lg">
                     Terms of Service
                   </a>
                 </motion.li>
@@ -186,23 +190,15 @@ function Footer() {
           </motion.div>
         </motion.div>
         <motion.div 
-          className="mt-12 border-t border-gray-700 pt-8"
+          className="mt-16 border-t border-white/20 pt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
           <motion.p 
-            className="text-base text-gray-400 text-center"
-            animate={{
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
+            className="text-center text-gray-300 text-lg"
           >
-            &copy; {new Date().getFullYear()} ConsentChain. All rights reserved.
+            © 2024 ConsentChain. All rights reserved.
           </motion.p>
         </motion.div>
       </div>
