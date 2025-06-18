@@ -23,6 +23,7 @@ function Hero() {
     initial: { scale: 1 },
     hover: { 
       scale: 1.05,
+      y: -5,
       transition: {
         type: "spring",
         stiffness: 400,
@@ -44,19 +45,9 @@ function Hero() {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative overflow-hidden min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
         <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-          <svg
-            className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-gray-900 transform translate-x-1/2"
-            fill="currentColor"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <polygon points="50,0 100,0 50,100 0,100" />
-          </svg>
-
           <main className="pt-10 mx-auto max-w-7xl px-4 sm:pt-12 sm:px-6 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
             <motion.div 
               className="sm:text-center lg:text-left"
@@ -65,32 +56,32 @@ function Hero() {
               variants={fadeInUp}
             >
               <motion.h1 
-                className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl"
+                className="text-5xl tracking-tight font-display font-extrabold text-white sm:text-6xl md:text-7xl lg:text-8xl"
                 animate={{
                   textShadow: [
-                    '0 0 8px rgba(59, 130, 246, 0.5)',
-                    '0 0 16px rgba(59, 130, 246, 0.5)',
-                    '0 0 8px rgba(59, 130, 246, 0.5)',
+                    '0 0 20px rgba(59, 130, 246, 0.3)',
+                    '0 0 40px rgba(59, 130, 246, 0.5)',
+                    '0 0 20px rgba(59, 130, 246, 0.3)',
                   ],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 3,
                   repeat: Infinity,
                   repeatType: 'reverse',
                 }}
               >
-                <span className="block">One Link,</span>
-                <span className="block text-primary-400">One Scan,</span>
-                <span className="block">One Consent</span>
+                <span className="block text-gradient">One Link,</span>
+                <span className="block text-gradient">One Scan,</span>
+                <span className="block text-gradient">One Consent</span>
               </motion.h1>
 
               <motion.p
-                className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+                className="mt-6 text-xl text-gray-200 sm:mt-8 sm:text-2xl sm:max-w-xl sm:mx-auto md:mt-8 md:text-2xl lg:mx-0 leading-relaxed"
                 animate={{
                   opacity: [0.7, 1, 0.7],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 3,
                   repeat: Infinity,
                   repeatType: 'reverse',
                 }}
@@ -99,7 +90,7 @@ function Hero() {
               </motion.p>
 
               <motion.div
-                className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
+                className="mt-8 sm:mt-12 sm:flex sm:justify-center lg:justify-start"
                 initial="initial"
                 animate="animate"
                 variants={buttonContainerVariants}
@@ -107,29 +98,29 @@ function Hero() {
                 {!isConnectedToPeraWallet ? (
                   <>
                     <motion.div
-                      className="rounded-md shadow"
-                      whileHover={{ scale: 1.05 }}
+                      className="rounded-xl shadow-elegant"
+                      whileHover={{ scale: 1.05, y: -5 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <WalletConnect variant="hero" />
                     </motion.div>
                     <motion.div
-                      className="mt-3 sm:mt-0 sm:ml-3"
-                      whileHover={{ scale: 1.05 }}
+                      className="mt-4 sm:mt-0 sm:ml-6"
+                      whileHover={{ scale: 1.05, y: -5 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <motion.a
                         href="#"
-                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 md:py-4 md:text-lg md:px-10"
+                        className="btn-outline w-full flex items-center justify-center px-10 py-4 text-lg font-medium md:py-5 md:text-xl md:px-12"
                         animate={{
-                          backgroundColor: [
-                            'rgba(219, 234, 254, 1)',
-                            'rgba(191, 219, 254, 1)',
-                            'rgba(219, 234, 254, 1)',
+                          borderColor: [
+                            'rgba(255, 255, 255, 0.3)',
+                            'rgba(255, 255, 255, 0.6)',
+                            'rgba(255, 255, 255, 0.3)',
                           ],
                         }}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
                           repeatType: 'reverse',
                         }}
@@ -139,7 +130,7 @@ function Hero() {
                     </motion.div>
                   </>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-4xl">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
                     <motion.div
                       variants={buttonVariants}
                       initial="initial"
@@ -148,9 +139,9 @@ function Hero() {
                     >
                       <Link
                         to="/request-consent"
-                        className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full flex items-center justify-center px-8 py-5 border border-transparent text-lg font-medium rounded-2xl text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-glow hover:shadow-glow-lg transition-all duration-300 border border-primary-400/30"
                       >
-                        <ClipboardDocumentListIcon className="h-6 w-6 mr-2" />
+                        <ClipboardDocumentListIcon className="h-7 w-7 mr-3" />
                         Request Consent
                       </Link>
                     </motion.div>
@@ -162,9 +153,9 @@ function Hero() {
                     >
                       <Link
                         to="/grant-consent"
-                        className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full flex items-center justify-center px-8 py-5 border border-transparent text-lg font-medium rounded-2xl text-white bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-600 hover:to-secondary-700 shadow-glow hover:shadow-glow-lg transition-all duration-300 border border-secondary-400/30"
                       >
-                        <DocumentCheckIcon className="h-6 w-6 mr-2" />
+                        <DocumentCheckIcon className="h-7 w-7 mr-3" />
                         Grant Consent
                       </Link>
                     </motion.div>
@@ -176,9 +167,9 @@ function Hero() {
                     >
                       <Link
                         to="/scan-qr"
-                        className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full flex items-center justify-center px-8 py-5 border border-transparent text-lg font-medium rounded-2xl text-white bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 shadow-glow hover:shadow-glow-lg transition-all duration-300 border border-accent-400/30"
                       >
-                        <QrCodeIcon className="h-6 w-6 mr-2" />
+                        <QrCodeIcon className="h-7 w-7 mr-3" />
                         Scan QR
                       </Link>
                     </motion.div>
@@ -190,9 +181,9 @@ function Hero() {
                     >
                       <Link
                         to="/dashboard"
-                        className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full flex items-center justify-center px-8 py-5 border border-transparent text-lg font-medium rounded-2xl text-white bg-gradient-to-r from-premium-600 to-premium-700 hover:from-premium-700 hover:to-premium-800 shadow-glow hover:shadow-glow-lg transition-all duration-300 border border-premium-400/30"
                       >
-                        <ChartBarIcon className="h-6 w-6 mr-2" />
+                        <ChartBarIcon className="h-7 w-7 mr-3" />
                         Dashboard
                       </Link>
                     </motion.div>
@@ -207,7 +198,7 @@ function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1 }}
         >
           <HeroAnimation />
         </motion.div>
