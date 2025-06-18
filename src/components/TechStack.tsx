@@ -6,37 +6,37 @@ const technologies = [
     name: 'Algorand',
     description: 'Pure Proof of Stake blockchain platform for secure, scalable, and decentralized applications',
     logo: '🔗',
-    color: 'from-gray-700 to-gray-800',
+    color: 'from-primary-500 to-primary-600',
   },
   {
     name: 'Algorand Standard Assets',
     description: 'Native token standard for creating and managing digital assets on Algorand',
     logo: '💎',
-    color: 'from-gray-700 to-gray-800',
+    color: 'from-secondary-500 to-secondary-600',
   },
   {
     name: 'Pera Wallet',
     description: 'Official Algorand wallet for secure asset management and transactions',
     logo: '👛',
-    color: 'from-gray-700 to-gray-800',
+    color: 'from-accent-500 to-accent-600',
   },
   {
     name: 'DigiLocker',
     description: 'Government-issued digital document storage and verification system',
     logo: '📄',
-    color: 'from-gray-700 to-gray-800',
+    color: 'from-premium-600 to-premium-700',
   },
   {
     name: 'AlgoKit',
     description: 'Developer toolkit for building and deploying Algorand applications',
     logo: '🛠️',
-    color: 'from-gray-700 to-gray-800',
+    color: 'from-primary-600 to-secondary-600',
   },
   {
     name: 'IPFS',
     description: 'Decentralized storage system for secure and distributed document management',
     logo: '🌐',
-    color: 'from-gray-700 to-gray-800',
+    color: 'from-secondary-600 to-accent-600',
   },
 ];
 
@@ -69,29 +69,41 @@ const TechStack = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden min-h-screen flex items-center">
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-100 dark:bg-primary-900/20 rounded-full filter blur-3xl"
+          className="absolute top-1/4 left-1/4 w-80 h-80 bg-primary-500/10 rounded-full filter blur-3xl"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
-            duration: 8,
+            duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-200 dark:bg-primary-800/20 rounded-full filter blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.6, 0.4],
+            scale: [1.3, 1, 1.3],
+            opacity: [0.3, 0.5, 0.3],
           }}
           transition={{
-            duration: 10,
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/5 rounded-full filter blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -104,37 +116,17 @@ const TechStack = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl font-bold text-gray-900 dark:text-white mb-6"
-            animate={{
-              textShadow: [
-                '0 0 8px rgba(59, 130, 246, 0.5)',
-                '0 0 16px rgba(59, 130, 246, 0.5)',
-                '0 0 8px rgba(59, 130, 246, 0.5)',
-              ],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
+            className="section-title"
           >
             Our Tech Stack
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
-            animate={{
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
+            className="section-subtitle max-w-4xl mx-auto"
           >
             Built with cutting-edge technologies to ensure security, scalability, and user experience.
           </motion.p>
@@ -152,10 +144,10 @@ const TechStack = () => {
               variants={itemVariants}
               className="group"
             >
-              <div className="h-full bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
+              <div className="card-premium h-full">
                 <div className="flex flex-col items-center text-center">
                   <motion.div
-                    className={`w-16 h-16 rounded-full bg-gradient-to-r ${tech.color} flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform duration-200`}
+                    className={`w-20 h-20 rounded-2xl bg-gradient-to-r ${tech.color} flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-glow`}
                     animate={{
                       rotate: [0, 360],
                     }}
@@ -167,10 +159,10 @@ const TechStack = () => {
                   >
                     {tech.logo}
                   </motion.div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-2xl font-semibold text-gradient mb-4">
                     {tech.name}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-gray-200 text-lg leading-relaxed">
                     {tech.description}
                   </p>
                 </div>
@@ -183,19 +175,11 @@ const TechStack = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mt-16 text-center"
+          className="mt-20 text-center"
         >
           <motion.p
             variants={itemVariants}
-            className="text-gray-600 dark:text-gray-300"
-            animate={{
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
+            className="text-gray-200 text-xl leading-relaxed"
           >
             All components are optimized for performance and security, ensuring a seamless user experience.
           </motion.p>
