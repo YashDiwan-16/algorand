@@ -273,3 +273,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Pera Wallet Team
 - React Community
 - TailwindCSS Team
+
+## Telegram Bot Integration
+
+ConsentChain now offers a seamless integration with Telegram! You can interact with the platform directly from your favorite messaging app using our official bot:
+
+- **Bot Username:** [@consent_bot](https://t.me/consent_bot)
+- **Features:**
+  - Manage your data consents
+  - Receive real-time notifications
+  - Approve or reject requests
+  - And more—all from Telegram!
+
+To get started, visit the new **Telegram Bot** page in the app navigation or [click here](https://t.me/consent_bot).
