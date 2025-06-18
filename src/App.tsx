@@ -13,6 +13,7 @@ import FrontendModules from './components/FrontendModules';
 import TechStack from './components/TechStack';
 import WhoCanUse from './components/WhoCanUse';
 import PremiumShowcase from './components/PremiumShowcase';
+import TelegramBotPage from './pages/TelegramBotPage';
 
 const App: React.FC = () => {
   return (
@@ -40,6 +41,7 @@ const App: React.FC = () => {
                 </>
               } />
               <Route path="/documents" element={<Documents />} />
+              <Route path="/telegram-bot" element={<TelegramBotPage />} />
               <Route path="/about" element={
                 <div className="container mx-auto px-4 py-20">
                   <div className="max-w-4xl mx-auto">

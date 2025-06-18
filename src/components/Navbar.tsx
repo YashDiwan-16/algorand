@@ -49,6 +49,12 @@ const Navbar: React.FC = () => {
               </Link>
             </motion.div>
             <motion.div whileHover={{ y: -2 }}>
+              <Link to="/telegram-bot" className="text-gray-200 hover:text-white transition-colors duration-300 font-medium relative group">
+                Telegram Bot
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-primary-400 group-hover:w-full transition-all duration-300"></span>
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }}>
               <Link to="/about" className="text-gray-200 hover:text-white transition-colors duration-300 font-medium relative group">
                 About
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-400 to-primary-400 group-hover:w-full transition-all duration-300"></span>
