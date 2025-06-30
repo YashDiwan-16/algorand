@@ -7,6 +7,11 @@ import base64
 import json
 import time
 import pathlib
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -53,12 +58,12 @@ def deploy_contract(creator_address, creator_private_key):
 
     # Submit transaction
     tx_id = client.send_transaction(signed_txn)
-    print(f"Deployed contract with transaction ID: {tx_id}")
+    logger.info(f"Deployed contract with transaction ID: {tx_id}")
 
     # Wait for confirmation
     transaction_response = client.pending_transaction_info(tx_id)
     app_id = transaction_response['application-index']
-    print(f"Contract deployed with app ID: {app_id}")
+    logger.info(f"Contract deployed with app ID: {app_id}")
     return app_id
 
 # Test the contract
@@ -82,7 +87,7 @@ def test_contract(app_id, creator_address, creator_private_key, recipient_addres
     )
     signed_request = request_txn.sign(creator_private_key)
     request_tx_id = client.send_transaction(signed_request)
-    print(f"Request consent transaction ID: {request_tx_id}")
+    logger.info(f"Request consent transaction ID: {request_tx_id}")
     client.pending_transaction_info(request_tx_id)
 
     # Test grant_consent
@@ -99,7 +104,7 @@ def test_contract(app_id, creator_address, creator_private_key, recipient_addres
     )
     signed_grant = grant_txn.sign(recipient_private_key)
     grant_tx_id = client.send_transaction(signed_grant)
-    print(f"Grant consent transaction ID: {grant_tx_id}")
+    logger.info(f"Grant consent transaction ID: {grant_tx_id}")
     client.pending_transaction_info(grant_tx_id)
 
     # Test view_document
@@ -112,7 +117,7 @@ def test_contract(app_id, creator_address, creator_private_key, recipient_addres
     )
     signed_view = view_txn.sign(creator_private_key)
     view_tx_id = client.send_transaction(signed_view)
-    print(f"View document transaction ID: {view_tx_id}")
+    logger.info(f"View document transaction ID: {view_tx_id}")
     client.pending_transaction_info(view_tx_id)
 
     # Test revoke_consent
@@ -125,7 +130,7 @@ def test_contract(app_id, creator_address, creator_private_key, recipient_addres
     )
     signed_revoke = revoke_txn.sign(recipient_private_key)
     revoke_tx_id = client.send_transaction(signed_revoke)
-    print(f"Revoke consent transaction ID: {revoke_tx_id}")
+    logger.info(f"Revoke consent transaction ID: {revoke_tx_id}")
     client.pending_transaction_info(revoke_tx_id)
 
 def main():
@@ -136,8 +141,8 @@ def main():
     creator_address, creator_private_key = get_account_from_mnemonic(creator_mnemonic)
     recipient_address, recipient_private_key = get_account_from_mnemonic(recipient_mnemonic)
 
-    print(f"Creator address: {creator_address}")
-    print(f"Recipient address: {recipient_address}")
+    logger.info(f"Creator address: {creator_address}")
+    logger.info(f"Recipient address: {recipient_address}")
 
     # Deploy contract
     app_id = deploy_contract(creator_address, creator_private_key)
