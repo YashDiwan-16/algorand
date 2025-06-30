@@ -1,15 +1,11 @@
 import React from 'react';
 import { useWallet } from '../context/WalletContext';
-import { truncateAddress } from '../utils/truncateAddress';
 import UserProfileCard from '../components/UserProfileCard';
 import RecentActivity from '../components/RecentActivity';
+import StatsCard from '../components/StatsCard';
+import { useProfile } from '../context/ProfileContext';
 
 // Mock Data
-const mockUser = {
-  name: 'Apurva',
-  email: 'itsapurvasb343@gmail.com',
-  avatarUrl: `https://i.pravatar.cc/150?u=apurva`,
-};
 const mockActivities = [
   { id: '1', description: 'Granted consent for "Aadhaar Card"', timestamp: new Date() },
   { id: '2', description: 'Revoked consent for "Passport"', timestamp: new Date(Date.now() - 86400000) },
@@ -18,6 +14,7 @@ const mockActivities = [
 
 const DashboardPage: React.FC = () => {
   const { wallet } = useWallet();
+  const { profile } = useProfile();
 
   if (!wallet.isConnected) {
     return <p className="text-center mt-8">Please connect your wallet to view the dashboard.</p>;
@@ -26,9 +23,17 @@ const DashboardPage: React.FC = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+      
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        <StatsCard title="Active Consents" value={5} icon={'📄'} />
+        <StatsCard title="Pending Requests" value={2} icon={'⏳'} />
+        <StatsCard title="Revoked Consents" value={1} icon={'🚫'} />
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1">
-          <UserProfileCard user={mockUser} />
+          <UserProfileCard user={profile} />
         </div>
         <div className="lg:col-span-2">
           <RecentActivity activities={mockActivities} />
