@@ -16,4 +16,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utility functions for date formatting and address truncation.
 - Comprehensive JSDoc and Python docstring documentation.
 - Setup instructions and development guidelines in README.
-- `.nvmrc` for consistent Node.js versioning. 
+- `.nvmrc` for consistent Node.js versioning.
+- Enhanced Dashboard with `UserProfileCard`, `RecentActivity`, and `StatsCard` components.
+- Reusable `Modal` component for detailed views.
+- `Pill` component for attractive status display.
+- Reusable `Input` and `TextArea` components for consistent forms.
+- Optional "Notes" field in the consent request form.
+
+### Changed
+- Refactored `DashboardPage` to be more modular and display more information.
+- Refactored `ConsentList` to include a "View Details" modal and use `Pill` for status.
+- Refactored `ConsentRequestForm` for better UI/UX and to use reusable form components.
+- Consolidated `Navbar` component to a single source of truth (`Navbar.tsx`).
+- Simplified `App.tsx` by introducing a main `Layout` component.
+- Integrated `ProfileProvider` for global user profile management. 
