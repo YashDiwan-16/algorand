@@ -6,6 +6,7 @@ import StatsCard from '../components/StatsCard';
 import { useProfile } from '../context/ProfileContext';
 import Navbar from '../components/Navbar';
 import ConsentSidebar from '../components/ConsentSidebar';
+import ConsentPieChart from '../components/ConsentPieChart';
 
 // Mock Data
 const mockActivities = [
@@ -41,6 +42,10 @@ const DashboardPage: React.FC = () => {
             <StatsCard title="Active Consents" value={5} icon={'📄'} />
             <StatsCard title="Pending Requests" value={2} icon={'⏳'} />
             <StatsCard title="Revoked Consents" value={1} icon={'🚫'} />
+          </div>
+          {/* Consent Status Pie Chart */}
+          <div className="mb-8 max-w-md">
+            <ConsentPieChart granted={5} pending={2} revoked={1} />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-1">
