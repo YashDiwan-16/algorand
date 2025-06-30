@@ -14,6 +14,7 @@ import ConsentNotificationToast from '../components/ConsentNotificationToast';
 import ConsentBanner from '../components/ConsentBanner';
 import ConsentThemeToggle from '../components/ConsentThemeToggle';
 import ConsentHelpTooltip from '../components/ConsentHelpTooltip';
+import ConsentExportButton from '../components/ConsentExportButton';
 
 // Mock Data
 const mockActivities = [
@@ -89,6 +90,9 @@ const DashboardPage: React.FC = () => {
           </div>
           {/* Consent Table */}
           <div className="mt-10">
+            <div className="mb-4">
+              <ConsentExportButton consents={rows} />
+            </div>
             {loading ? (
               <ConsentTableSkeleton />
             ) : rows.length === 0 ? (
