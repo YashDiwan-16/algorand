@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * A simple, reusable loading spinner component.
+ */
 const Spinner: React.FC = () => {
   return (
     <div className="flex justify-center items-center">
