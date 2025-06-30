@@ -21,20 +21,20 @@ algod_address = os.environ.get("ALGOD_ADDRESS", "https://testnet-api.algonode.cl
 algod_token = os.environ.get("ALGOD_TOKEN", "")
 client = algod.AlgodClient(algod_token, algod_address)
 
-# Load the compiled TEAL program
 def load_teal(filename):
+    """Load a TEAL program from a file."""
     path = pathlib.Path(filename)
     with path.open('r') as f:
         return f.read()
 
-# Create an account from the mnemonic
 def get_account_from_mnemonic(mnemonic_str):
+    """Get account address and private key from a mnemonic string."""
     private_key = mnemonic.to_private_key(mnemonic_str)
     address = account.address_from_private_key(private_key)
     return address, private_key
 
-# Deploy the contract
 def deploy_contract(creator_address, creator_private_key):
+    """Deploy the smart contract to the Algorand network."""
     # Read the approval and clear programs
     approval_program = load_teal("consent_approval.teal")
     clear_program = load_teal("consent_clear.teal")
@@ -66,8 +66,8 @@ def deploy_contract(creator_address, creator_private_key):
     logger.info(f"Contract deployed with app ID: {app_id}")
     return app_id
 
-# Test the contract
 def test_contract(app_id, creator_address, creator_private_key, recipient_address, recipient_private_key):
+    """Run a series of tests against the deployed smart contract."""
     # Get suggested parameters
     params = client.suggested_params()
 
@@ -134,6 +134,7 @@ def test_contract(app_id, creator_address, creator_private_key, recipient_addres
     client.pending_transaction_info(revoke_tx_id)
 
 def main():
+    """Main function to deploy and test the contract."""
     # Create accounts from mnemonics
     creator_mnemonic = os.environ.get("CREATOR_MNEMONIC", "")
     recipient_mnemonic = os.environ.get("RECIPIENT_MNEMONIC", "")
