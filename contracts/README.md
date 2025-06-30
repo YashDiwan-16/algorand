@@ -11,6 +11,28 @@ This directory contains Algorand smart contracts and utility scripts for managin
 - **deploy.py**: Deploys the TEAL contracts to the Algorand blockchain and provides test functions for contract interaction.
 - **generate_account.py**: Utility script to generate new Algorand accounts and print their address and mnemonic for use in testing or development.
 
+## Usage Examples
+
+### Deploy the Contract
+```sh
+python deploy.py
+```
+
+### Generate a New Account
+```sh
+python generate_account.py
+```
+
+### Fund a Testnet Account
+```sh
+python fund_account.py <ALGOD_ADDRESS>
+```
+
+### Test Contract Deployment
+```sh
+python test_deploy.py
+```
+
 ## Code Formatting & Pre-commit Hooks
 
 This project uses [black](https://github.com/psf/black) and [isort](https://github.com/pycqa/isort) for Python code formatting. To enable automatic formatting before each commit, install pre-commit and set up the hooks:
