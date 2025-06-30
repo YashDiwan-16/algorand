@@ -11,6 +11,7 @@ import ConsentTable from '../components/ConsentTable';
 import ConsentTableSkeleton from '../components/ConsentTableSkeleton';
 import ConsentEmptyState from '../components/ConsentEmptyState';
 import ConsentNotificationToast from '../components/ConsentNotificationToast';
+import ConsentBanner from '../components/ConsentBanner';
 
 // Mock Data
 const mockActivities = [
@@ -46,6 +47,7 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
+      <ConsentBanner message="Welcome to the new Consent Dashboard! Please review your pending requests." type="info" />
       <div className="flex">
         <div className="hidden lg:block w-64">
           <ConsentSidebar links={[
