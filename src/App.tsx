@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { WalletProvider } from './context/WalletContext';
+import { ProfileProvider } from './context/ProfileContext';
 
 // Pages
 import Documents from './pages/Documents';
@@ -18,20 +19,22 @@ import Layout from './components/Layout';
 const App: React.FC = () => {
   return (
     <WalletProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/consents" element={<ConsentsPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/telegram-bot" element={<TelegramBotPage />} />
-            <Route path="/about" element={<AboutUsPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <ProfileProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/consents" element={<ConsentsPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/telegram-bot" element={<TelegramBotPage />} />
+              <Route path="/about" element={<AboutUsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </ProfileProvider>
     </WalletProvider>
   );
 };
