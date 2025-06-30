@@ -13,6 +13,7 @@ import ConsentEmptyState from '../components/ConsentEmptyState';
 import ConsentNotificationToast from '../components/ConsentNotificationToast';
 import ConsentBanner from '../components/ConsentBanner';
 import ConsentThemeToggle from '../components/ConsentThemeToggle';
+import ConsentHelpTooltip from '../components/ConsentHelpTooltip';
 
 // Mock Data
 const mockActivities = [
@@ -63,7 +64,11 @@ const DashboardPage: React.FC = () => {
           ]} />
         </div>
         <main className="flex-1 p-6">
-          <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+          <h1 className="text-2xl font-bold mb-6">
+            <ConsentHelpTooltip text="This dashboard gives you an overview of your consents, requests, and recent activity.">
+              Dashboard
+            </ConsentHelpTooltip>
+          </h1>
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
             <StatsCard title="Active Consents" value={5} icon={'📄'} />
