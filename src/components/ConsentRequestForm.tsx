@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import Input from './Input';
+import TextArea from './TextArea';
 
 interface ConsentRequestFormProps {
-  onSubmit: (data: { documentName: string; documentHash: string; recipient: string }) => void;
+  onSubmit: (data: { documentName: string; documentHash: string; recipient: string; notes: string }) => void;
   className?: string;
 }
 
@@ -11,13 +12,15 @@ const ConsentRequestForm: React.FC<ConsentRequestFormProps> = ({ onSubmit, class
   const [documentName, setDocumentName] = useState('');
   const [documentHash, setDocumentHash] = useState('');
   const [recipient, setRecipient] = useState('');
+  const [notes, setNotes] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ documentName, documentHash, recipient });
+    onSubmit({ documentName, documentHash, recipient, notes });
     setDocumentName('');
     setDocumentHash('');
     setRecipient('');
+    setNotes('');
   };
 
   return (
@@ -48,6 +51,13 @@ const ConsentRequestForm: React.FC<ConsentRequestFormProps> = ({ onSubmit, class
         onChange={e => setRecipient(e.target.value)}
         placeholder="Algorand wallet address"
         required
+      />
+      <TextArea
+        id="notes"
+        label="Notes (Optional)"
+        value={notes}
+        onChange={e => setNotes(e.target.value)}
+        placeholder="Add any additional context for the request..."
       />
       <Button type="submit" className="w-full justify-center !mt-6">Request Consent</Button>
     </form>
