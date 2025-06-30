@@ -12,6 +12,7 @@ import ConsentTableSkeleton from '../components/ConsentTableSkeleton';
 import ConsentEmptyState from '../components/ConsentEmptyState';
 import ConsentNotificationToast from '../components/ConsentNotificationToast';
 import ConsentBanner from '../components/ConsentBanner';
+import ConsentThemeToggle from '../components/ConsentThemeToggle';
 
 // Mock Data
 const mockActivities = [
@@ -28,6 +29,7 @@ const DashboardPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [rows, setRows] = useState<any[]>([]);
   const [showToast, setShowToast] = useState(false);
+  const [dark, setDark] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setRows([
@@ -47,6 +49,9 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
+      <div className="absolute top-4 right-8 z-50">
+        <ConsentThemeToggle dark={dark} onToggle={() => setDark(d => !d)} />
+      </div>
       <ConsentBanner message="Welcome to the new Consent Dashboard! Please review your pending requests." type="info" />
       <div className="flex">
         <div className="hidden lg:block w-64">
