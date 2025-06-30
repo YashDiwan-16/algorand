@@ -7,6 +7,9 @@ import Documents from './pages/Documents';
 import ConsentsPage from './pages/ConsentsPage';
 import TelegramBotPage from './pages/TelegramBotPage';
 import HomePage from './pages/HomePage'; // Assuming Vision and PremiumShowcase are part of a HomePage
+import DashboardPage from './pages/DashboardPage';
+import SettingsPage from './pages/SettingsPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Components
 import Layout from './components/Layout';
@@ -18,10 +21,12 @@ const App: React.FC = () => {
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/documents" element={<Documents />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/consents" element={<ConsentsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/documents" element={<Documents />} />
             <Route path="/telegram-bot" element={<TelegramBotPage />} />
-            {/* Add other routes here */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Layout>
       </Router>
