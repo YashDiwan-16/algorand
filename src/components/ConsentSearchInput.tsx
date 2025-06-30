@@ -13,6 +13,7 @@ const ConsentSearchInput: React.FC<ConsentSearchInputProps> = ({ value, onChange
     onChange={e => onChange(e.target.value)}
     placeholder={placeholder}
     className="border rounded px-3 py-1 w-full max-w-xs"
+    data-testid="consent-search-input"
   />
 );
 
