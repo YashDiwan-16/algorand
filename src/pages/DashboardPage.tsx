@@ -10,6 +10,7 @@ import ConsentPieChart from '../components/ConsentPieChart';
 import ConsentTable from '../components/ConsentTable';
 import ConsentTableSkeleton from '../components/ConsentTableSkeleton';
 import ConsentEmptyState from '../components/ConsentEmptyState';
+import ConsentNotificationToast from '../components/ConsentNotificationToast';
 
 // Mock Data
 const mockActivities = [
@@ -25,6 +26,7 @@ const DashboardPage: React.FC = () => {
   // Mock loading and data state
   const [loading, setLoading] = useState(true);
   const [rows, setRows] = useState<any[]>([]);
+  const [showToast, setShowToast] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setRows([
@@ -33,6 +35,7 @@ const DashboardPage: React.FC = () => {
         { id: '3', document: 'Bank Statement', user: '0x789...', status: 'requested', requestedAt: '2024-06-10' },
       ]);
       setLoading(false);
+      setShowToast(true);
     }, 1200);
   }, []);
 
@@ -84,6 +87,12 @@ const DashboardPage: React.FC = () => {
           </div>
         </main>
       </div>
+      <ConsentNotificationToast
+        message="Consent data loaded successfully!"
+        type="success"
+        onClose={() => setShowToast(false)}
+        {...(showToast ? {} : { style: { display: 'none' } })}
+      />
     </div>
   );
 };
