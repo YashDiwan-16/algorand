@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWallet } from '../context/WalletContext';
 import UserProfileCard from '../components/UserProfileCard';
 import RecentActivity from '../components/RecentActivity';
@@ -8,6 +8,8 @@ import Navbar from '../components/Navbar';
 import ConsentSidebar from '../components/ConsentSidebar';
 import ConsentPieChart from '../components/ConsentPieChart';
 import ConsentTable from '../components/ConsentTable';
+import ConsentTableSkeleton from '../components/ConsentTableSkeleton';
+import ConsentEmptyState from '../components/ConsentEmptyState';
 
 // Mock Data
 const mockActivities = [
@@ -19,6 +21,20 @@ const mockActivities = [
 const DashboardPage: React.FC = () => {
   const { wallet } = useWallet();
   const { profile } = useProfile();
+
+  // Mock loading and data state
+  const [loading, setLoading] = useState(true);
+  const [rows, setRows] = useState<any[]>([]);
+  useEffect(() => {
+    setTimeout(() => {
+      setRows([
+        { id: '1', document: 'Aadhaar Card', user: '0x123...', status: 'granted', requestedAt: '2024-06-01' },
+        { id: '2', document: 'Passport', user: '0x456...', status: 'revoked', requestedAt: '2024-05-20' },
+        { id: '3', document: 'Bank Statement', user: '0x789...', status: 'requested', requestedAt: '2024-06-10' },
+      ]);
+      setLoading(false);
+    }, 1200);
+  }, []);
 
   if (!wallet.isConnected) {
     return <p className="text-center mt-8">Please connect your wallet to view the dashboard.</p>;
@@ -58,13 +74,13 @@ const DashboardPage: React.FC = () => {
           </div>
           {/* Consent Table */}
           <div className="mt-10">
-            <ConsentTable
-              rows={[
-                { id: '1', document: 'Aadhaar Card', user: '0x123...', status: 'granted', requestedAt: '2024-06-01' },
-                { id: '2', document: 'Passport', user: '0x456...', status: 'revoked', requestedAt: '2024-05-20' },
-                { id: '3', document: 'Bank Statement', user: '0x789...', status: 'requested', requestedAt: '2024-06-10' },
-              ]}
-            />
+            {loading ? (
+              <ConsentTableSkeleton />
+            ) : rows.length === 0 ? (
+              <ConsentEmptyState message="No consents found." />
+            ) : (
+              <ConsentTable rows={rows} />
+            )}
           </div>
         </main>
       </div>
