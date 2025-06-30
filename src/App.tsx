@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage'; // Assuming Vision and PremiumShowcase 
 import DashboardPage from './pages/DashboardPage';
 import SettingsPage from './pages/SettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
+import AboutUsPage from './pages/AboutUsPage'; // Import the new page
 
 // Components
 import Layout from './components/Layout';
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/documents" element={<Documents />} />
             <Route path="/telegram-bot" element={<TelegramBotPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Layout>
