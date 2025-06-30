@@ -34,7 +34,7 @@ const ConsentExportButton: React.FC<ConsentExportButtonProps> = ({ consents }) =
     URL.revokeObjectURL(url);
   };
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2" data-testid="consent-export-button">
       <button className="px-3 py-1 bg-blue-600 text-white rounded" onClick={() => handleExport('csv')} title="Export as CSV">Export CSV</button>
       <button className="px-3 py-1 bg-gray-700 text-white rounded" onClick={() => handleExport('json')} title="Export as JSON">Export JSON</button>
     </div>
