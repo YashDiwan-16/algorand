@@ -21,7 +21,7 @@ const ConsentExpiryCountdown: React.FC<ConsentExpiryCountdownProps> = ({ expiry 
     const timer = setInterval(() => setLeft(getTimeLeft(expiry)), 60000);
     return () => clearInterval(timer);
   }, [expiry]);
-  return <span className="text-xs font-mono text-gray-500">{left}</span>;
+  return <span className="text-xs font-mono text-gray-500" data-testid="consent-expiry-countdown">{left}</span>;
 };
 
 export default ConsentExpiryCountdown; 
