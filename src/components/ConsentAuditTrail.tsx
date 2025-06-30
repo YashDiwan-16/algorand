@@ -6,7 +6,7 @@ interface ConsentAuditTrailProps {
 }
 
 const ConsentAuditTrail: React.FC<ConsentAuditTrailProps> = ({ events }) => (
-  <div className="bg-white rounded shadow p-4">
+  <div className="bg-white rounded shadow p-4" data-testid="consent-audit-trail">
     <h4 className="font-bold mb-2">Audit Trail</h4>
     <ul className="divide-y divide-gray-200">
       {events.map((e, i) => (
