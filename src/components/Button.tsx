@@ -1,10 +1,22 @@
 import React from 'react';
 
+/**
+ * Props for the Button component.
+ */
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * The content to be displayed inside the button.
+   */
   children: React.ReactNode;
+  /**
+   * Optional additional CSS classes to apply to the button.
+   */
   className?: string;
 }
 
+/**
+ * A reusable button component with default styling.
+ */
 const Button: React.FC<ButtonProps> = ({ children, className = '', ...props }) => {
   return (
     <button
