@@ -20,38 +20,44 @@ const ConsentRequestForm: React.FC<ConsentRequestFormProps> = ({ onSubmit, class
   };
 
   return (
-    <form className={`space-y-4 ${className}`} onSubmit={handleSubmit}>
+    <form className={`space-y-6 ${className}`} onSubmit={handleSubmit}>
       <div>
-        <label className="block text-sm font-medium mb-1">Document Name</label>
+        <label htmlFor="documentName" className="block text-sm font-medium text-gray-700 mb-1">Document Name</label>
         <input
+          id="documentName"
           type="text"
           value={documentName}
           onChange={e => setDocumentName(e.target.value)}
-          className="w-full border rounded px-3 py-2"
+          placeholder="e.g., Aadhaar Card"
+          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           required
         />
       </div>
       <div>
-        <label className="block text-sm font-medium mb-1">Document Hash</label>
+        <label htmlFor="documentHash" className="block text-sm font-medium text-gray-700 mb-1">Document Hash (IPFS CID)</label>
         <input
+          id="documentHash"
           type="text"
           value={documentHash}
           onChange={e => setDocumentHash(e.target.value)}
-          className="w-full border rounded px-3 py-2"
+          placeholder="Qm..."
+          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           required
         />
       </div>
       <div>
-        <label className="block text-sm font-medium mb-1">Recipient Address</label>
+        <label htmlFor="recipient" className="block text-sm font-medium text-gray-700 mb-1">Recipient Address</label>
         <input
+          id="recipient"
           type="text"
           value={recipient}
           onChange={e => setRecipient(e.target.value)}
-          className="w-full border rounded px-3 py-2"
+          placeholder="Algorand wallet address"
+          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           required
         />
       </div>
-      <Button type="submit">Request Consent</Button>
+      <Button type="submit" className="w-full justify-center">Request Consent</Button>
     </form>
   );
 };
