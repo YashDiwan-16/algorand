@@ -4,6 +4,8 @@ import UserProfileCard from '../components/UserProfileCard';
 import RecentActivity from '../components/RecentActivity';
 import StatsCard from '../components/StatsCard';
 import { useProfile } from '../context/ProfileContext';
+import Navbar from '../components/Navbar';
+import ConsentSidebar from '../components/ConsentSidebar';
 
 // Mock Data
 const mockActivities = [
@@ -21,23 +23,34 @@ const DashboardPage: React.FC = () => {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-      
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        <StatsCard title="Active Consents" value={5} icon={'📄'} />
-        <StatsCard title="Pending Requests" value={2} icon={'⏳'} />
-        <StatsCard title="Revoked Consents" value={1} icon={'🚫'} />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-1">
-          <UserProfileCard user={profile} />
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <div className="flex">
+        <div className="hidden lg:block w-64">
+          <ConsentSidebar links={[
+            { label: 'Dashboard', href: '/dashboard' },
+            { label: 'Consents', href: '/consents' },
+            { label: 'Profile', href: '/profile' },
+            { label: 'Settings', href: '/settings' },
+          ]} />
         </div>
-        <div className="lg:col-span-2">
-          <RecentActivity activities={mockActivities} />
-        </div>
+        <main className="flex-1 p-6">
+          <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <StatsCard title="Active Consents" value={5} icon={'📄'} />
+            <StatsCard title="Pending Requests" value={2} icon={'⏳'} />
+            <StatsCard title="Revoked Consents" value={1} icon={'🚫'} />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-1">
+              <UserProfileCard user={profile} />
+            </div>
+            <div className="lg:col-span-2">
+              <RecentActivity activities={mockActivities} />
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );
