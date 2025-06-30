@@ -1,8 +1,14 @@
 #pragma version 6
+
+// This smart contract manages document consent between two parties.
+
+// Handle contract creation
 txn ApplicationID
 int 0
 ==
-bnz main_l18
+bnz main_l18 // If creating, jump to end
+
+// --- Action Routing ---
 txn OnCompletion
 int DeleteApplication
 ==
@@ -36,133 +42,158 @@ byte "view_document"
 ==
 bnz main_l10
 err
+
+// --- Action Implementations ---
+
+// view_document: Allows owner or requester to view if consent is granted and not expired.
 main_l10:
-byte "status"
-app_global_get
-byte "granted"
-==
-assert
-byte "expiry"
-app_global_get
-global LatestTimestamp
->
-assert
-txn Sender
-byte "owner"
-app_global_get
-==
-txn Sender
-byte "requester"
-app_global_get
-==
-||
-assert
-int 1
-return
+    // Check if status is "granted"
+    byte "status"
+    app_global_get
+    byte "granted"
+    ==
+    assert
+    // Check if consent is not expired
+    byte "expiry"
+    app_global_get
+    global LatestTimestamp
+    >
+    assert
+    // Check if sender is the owner or requester
+    txn Sender
+    byte "owner"
+    app_global_get
+    ==
+    txn Sender
+    byte "requester"
+    app_global_get
+    ==
+    ||
+    assert
+    int 1
+    return
+
+// revoke_consent: Allows owner or requester to revoke an active consent.
 main_l11:
-txn Sender
-byte "owner"
-app_global_get
-==
-txn Sender
-byte "requester"
-app_global_get
-==
-||
-assert
-byte "status"
-app_global_get
-byte "granted"
-==
-assert
-byte "status"
-byte "revoked"
-app_global_put
-int 1
-return
+    txn Sender
+    byte "owner"
+    app_global_get
+    ==
+    txn Sender
+    byte "requester"
+    app_global_get
+    ==
+    ||
+    assert
+    byte "status"
+    app_global_get
+    byte "granted"
+    ==
+    assert
+    byte "status"
+    byte "revoked"
+    app_global_put
+    int 1
+    return
+
+// grant_consent: Allows the owner to grant a pending request.
 main_l12:
-txn Sender
-byte "owner"
-app_global_get
-==
-assert
-byte "status"
-app_global_get
-byte "pending"
-==
-assert
-txna ApplicationArgs 1
-byte ""
-!=
-assert
-txna ApplicationArgs 2
-byte ""
-!=
-assert
-byte "status"
-byte "granted"
-app_global_put
-byte "expiry"
-txna ApplicationArgs 1
-btoi
-app_global_put
-byte "permissions"
-txna ApplicationArgs 2
-app_global_put
-int 1
-return
+    txn Sender
+    byte "owner"
+    app_global_get
+    ==
+    assert
+    byte "status"
+    app_global_get
+    byte "pending"
+    ==
+    assert
+    txna ApplicationArgs 1
+    byte ""
+    !=
+    assert
+    txna ApplicationArgs 2
+    byte ""
+    !=
+    assert
+    byte "status"
+    byte "granted"
+    app_global_put
+    byte "expiry"
+    txna ApplicationArgs 1
+    btoi
+    app_global_put
+    byte "permissions"
+    txna ApplicationArgs 2
+    app_global_put
+    int 1
+    return
+
+// request_consent: Initiates a new consent request.
 main_l13:
-txna ApplicationArgs 1
-byte ""
-!=
-assert
-txna ApplicationArgs 2
-byte ""
-!=
-assert
-txna ApplicationArgs 3
-byte ""
-!=
-assert
-txna ApplicationArgs 4
-byte ""
-!=
-assert
-byte "document_hash"
-txna ApplicationArgs 1
-app_global_put
-byte "document_type"
-txna ApplicationArgs 2
-app_global_put
-byte "request_id"
-txna ApplicationArgs 3
-app_global_put
-byte "requester"
-txna ApplicationArgs 4
-app_global_put
-byte "status"
-byte "pending"
-app_global_put
-int 1
-return
+    txna ApplicationArgs 1
+    byte ""
+    !=
+    assert
+    txna ApplicationArgs 2
+    byte ""
+    !=
+    assert
+    txna ApplicationArgs 3
+    byte ""
+    !=
+    assert
+    txna ApplicationArgs 4
+    byte ""
+    !=
+    assert
+    byte "document_hash"
+    txna ApplicationArgs 1
+    app_global_put
+    byte "document_type"
+    txna ApplicationArgs 2
+    app_global_put
+    byte "request_id"
+    txna ApplicationArgs 3
+    app_global_put
+    byte "requester"
+    txna ApplicationArgs 4
+    app_global_put
+    byte "status"
+    byte "pending"
+    app_global_put
+    int 1
+    return
+
+// --- OnCompletion Handlers ---
+
+// Allow OptIn
 main_l14:
-int 1
-return
+    int 1
+    return
+
+// Allow CloseOut
 main_l15:
-int 1
-return
+    int 1
+    return
+
+// Only owner can update
 main_l16:
-txn Sender
-byte "owner"
-app_global_get
-==
-return
+    txn Sender
+    byte "owner"
+    app_global_get
+    ==
+    return
+
+// Only owner can delete
 main_l17:
-txn Sender
-byte "owner"
-app_global_get
-==
-return
+    txn Sender
+    byte "owner"
+    app_global_get
+    ==
+    return
+
+// Contract creation logic
 main_l18:
-int 1
-return
+    int 1
+    return
