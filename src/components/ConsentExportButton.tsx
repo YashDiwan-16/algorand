@@ -35,8 +35,8 @@ const ConsentExportButton: React.FC<ConsentExportButtonProps> = ({ consents }) =
   };
   return (
     <div className="flex gap-2">
-      <button className="px-3 py-1 bg-blue-600 text-white rounded" onClick={() => handleExport('csv')}>Export CSV</button>
-      <button className="px-3 py-1 bg-gray-700 text-white rounded" onClick={() => handleExport('json')}>Export JSON</button>
+      <button className="px-3 py-1 bg-blue-600 text-white rounded" onClick={() => handleExport('csv')} title="Export as CSV">Export CSV</button>
+      <button className="px-3 py-1 bg-gray-700 text-white rounded" onClick={() => handleExport('json')} title="Export as JSON">Export JSON</button>
     </div>
   );
 };
