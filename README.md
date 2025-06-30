@@ -100,55 +100,47 @@ server/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v14+)
+- Node.js (v18.17.0 or as specified in `.nvmrc`)
 - Python 3.8+
-- MongoDB
-- Algorand Testnet Account
-- Pera Wallet
+- An Algorand Testnet Account with funds
 
-### Installation
+### Backend & Contracts Setup
 
-1. Clone the repository:
-```bash
-git clone https://github.com/YashDiwan-16/algorand.git
-cd algorand
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/YashDiwan-16/algorand.git
+    cd algorand
+    ```
 
-2. Install dependencies:
-```bash
-# Frontend dependencies
-npm install
+2.  **Install Python dependencies:**
+    ```bash
+    cd contracts
+    pip install -r requirements.txt
+    ```
 
-# Python dependencies
-pip install -r requirements.txt
-```
+3.  **Set up environment variables:**
+    -   Navigate to the `contracts` directory.
+    -   Copy `.env.example` to a new file named `.env`.
+    -   Fill in your `CREATOR_MNEMONIC` and `RECIPIENT_MNEMONIC`.
 
-3. Environment Setup:
-```bash
-# Create .env file
-cp .env.example .env
+4.  **Deploy the contracts:**
+    ```bash
+    python deploy.py
+    ```
 
-# Configure environment variables
-ALGORAND_NODE_URL=your_node_url
-ALGORAND_INDEXER_URL=your_indexer_url
-MONGODB_URI=your_mongodb_uri
-TELEGRAM_BOT_TOKEN=your_bot_token
-```
+### Frontend Setup
 
-4. Deploy Smart Contracts:
-```bash
-# Deploy to testnet
-python contracts/scripts/deploy.py --network testnet
-```
+1.  **Install frontend dependencies:**
+    (From the root `algorand` directory)
+    ```bash
+    npm install
+    ```
 
-5. Start the application:
-```bash
-# Start frontend
-npm start
-
-# Start backend
-npm run server
-```
+2.  **Start the frontend development server:**
+    ```bash
+    npm start
+    ```
+    The application will be available at `http://localhost:3000`.
 
 ## 📱 Use Cases
 
