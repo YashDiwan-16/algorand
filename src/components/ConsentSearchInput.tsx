@@ -6,7 +6,7 @@ interface ConsentSearchInputProps {
   placeholder?: string;
 }
 
-const ConsentSearchInput: React.FC<ConsentSearchInputProps> = ({ value, onChange, placeholder = 'Search consents...' }) => (
+const ConsentSearchInput: React.FC<ConsentSearchInputProps> = ({ value, onChange, placeholder = 'Search by document or user...' }) => (
   <input
     type="text"
     value={value}
