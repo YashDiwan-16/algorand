@@ -15,6 +15,11 @@ import ConsentBanner from '../components/ConsentBanner';
 import ConsentThemeToggle from '../components/ConsentThemeToggle';
 import ConsentHelpTooltip from '../components/ConsentHelpTooltip';
 import ConsentExportButton from '../components/ConsentExportButton';
+import ConsentStatusFilter from '../components/ConsentStatusFilter';
+import ConsentSearchInput from '../components/ConsentSearchInput';
+import ConsentDateRangePicker from '../components/ConsentDateRangePicker';
+import ConsentBulkActions from '../components/ConsentBulkActions';
+import ConsentUserSelector from '../components/ConsentUserSelector';
 
 // Mock Data
 const mockActivities = [
@@ -32,6 +37,13 @@ const DashboardPage: React.FC = () => {
   const [rows, setRows] = useState<any[]>([]);
   const [showToast, setShowToast] = useState(false);
   const [dark, setDark] = useState(false);
+  // Mock filter state
+  const [status, setStatus] = useState('');
+  const [search, setSearch] = useState('');
+  const [dateRange, setDateRange] = useState({ from: '', to: '' });
+  const [selected, setSelected] = useState<string[]>([]);
+  const [user, setUser] = useState('');
+
   useEffect(() => {
     setTimeout(() => {
       setRows([
@@ -90,7 +102,16 @@ const DashboardPage: React.FC = () => {
           </div>
           {/* Consent Table */}
           <div className="mt-10">
-            <div className="mb-4">
+            <div className="mb-4 flex flex-wrap gap-3 items-end">
+              <ConsentStatusFilter value={status} onChange={setStatus} />
+              <ConsentSearchInput value={search} onChange={setSearch} placeholder="Search consents..." />
+              <ConsentDateRangePicker start={dateRange.from} end={dateRange.to} onChange={(from, to) => setDateRange({ from, to })} />
+              <ConsentUserSelector value={user} onChange={setUser} users={[
+                { id: "0x123...", name: "Alice" },
+                { id: "0x456...", name: "Bob" },
+                { id: "0x789...", name: "Charlie" },
+              ]} />
+              <ConsentBulkActions selected={selected} onApprove={() => {}} onRevoke={() => {}} />
               <ConsentExportButton consents={rows} />
             </div>
             {loading ? (
