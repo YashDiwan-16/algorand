@@ -7,6 +7,7 @@ import { useProfile } from '../context/ProfileContext';
 import Navbar from '../components/Navbar';
 import ConsentSidebar from '../components/ConsentSidebar';
 import ConsentPieChart from '../components/ConsentPieChart';
+import ConsentTable from '../components/ConsentTable';
 
 // Mock Data
 const mockActivities = [
@@ -54,6 +55,16 @@ const DashboardPage: React.FC = () => {
             <div className="lg:col-span-2">
               <RecentActivity activities={mockActivities} />
             </div>
+          </div>
+          {/* Consent Table */}
+          <div className="mt-10">
+            <ConsentTable
+              rows={[
+                { id: '1', document: 'Aadhaar Card', user: '0x123...', status: 'granted', requestedAt: '2024-06-01' },
+                { id: '2', document: 'Passport', user: '0x456...', status: 'revoked', requestedAt: '2024-05-20' },
+                { id: '3', document: 'Bank Statement', user: '0x789...', status: 'requested', requestedAt: '2024-06-10' },
+              ]}
+            />
           </div>
         </main>
       </div>
