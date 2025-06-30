@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from './Button';
+import Input from './Input';
 
 interface ConsentRequestFormProps {
   onSubmit: (data: { documentName: string; documentHash: string; recipient: string }) => void;
@@ -20,44 +21,35 @@ const ConsentRequestForm: React.FC<ConsentRequestFormProps> = ({ onSubmit, class
   };
 
   return (
-    <form className={`space-y-6 ${className}`} onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="documentName" className="block text-sm font-medium text-gray-700 mb-1">Document Name</label>
-        <input
-          id="documentName"
-          type="text"
-          value={documentName}
-          onChange={e => setDocumentName(e.target.value)}
-          placeholder="e.g., Aadhaar Card"
-          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="documentHash" className="block text-sm font-medium text-gray-700 mb-1">Document Hash (IPFS CID)</label>
-        <input
-          id="documentHash"
-          type="text"
-          value={documentHash}
-          onChange={e => setDocumentHash(e.target.value)}
-          placeholder="Qm..."
-          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="recipient" className="block text-sm font-medium text-gray-700 mb-1">Recipient Address</label>
-        <input
-          id="recipient"
-          type="text"
-          value={recipient}
-          onChange={e => setRecipient(e.target.value)}
-          placeholder="Algorand wallet address"
-          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <Button type="submit" className="w-full justify-center">Request Consent</Button>
+    <form className={`space-y-4 ${className}`} onSubmit={handleSubmit}>
+      <Input
+        id="documentName"
+        label="Document Name"
+        type="text"
+        value={documentName}
+        onChange={e => setDocumentName(e.target.value)}
+        placeholder="e.g., Aadhaar Card"
+        required
+      />
+      <Input
+        id="documentHash"
+        label="Document Hash (IPFS CID)"
+        type="text"
+        value={documentHash}
+        onChange={e => setDocumentHash(e.target.value)}
+        placeholder="Qm..."
+        required
+      />
+      <Input
+        id="recipient"
+        label="Recipient Address"
+        type="text"
+        value={recipient}
+        onChange={e => setRecipient(e.target.value)}
+        placeholder="Algorand wallet address"
+        required
+      />
+      <Button type="submit" className="w-full justify-center !mt-6">Request Consent</Button>
     </form>
   );
 };
