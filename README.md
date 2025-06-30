@@ -35,6 +35,13 @@ ConsentChain is a decentralized consent management platform built on Algorand bl
   - Activity logs
   - Settings management
 
+- **Reusable UI Components**
+  - `Input` and `TextArea`: Standardized form input fields.
+  - `Pill`: For displaying status labels.
+  - `Toggle`: An animated on/off switch.
+  - `Spinner`: A loading indicator for async operations.
+  - `Modal`: A generic modal/dialog component.
+
 ### 3. Backend Services
 - **Algorand Service** (`algorandConsentService.js`)
   - Smart contract interaction
@@ -88,6 +95,27 @@ src/
 └── services/               # Backend services
 ```
 
+## 📂 Project Structure
+
+A brief overview of the key directories in the frontend application:
+
+```
+src/
+├── api/             # Functions for interacting with the backend API
+├── assets/          # Static assets like images and SVGs
+├── components/      # Reusable React components (Buttons, Modals, etc.)
+├── constants/       # Application-wide constants
+├── contexts/        # React context providers for global state
+├── hooks/           # Custom React hooks
+├── layouts/         # Layout components (e.g., main app layout with Navbar)
+├── pages/           # Top-level page components for each route
+├── services/        # Services for interacting with external APIs (Algorand, IPFS)
+├── types/           # TypeScript type definitions
+├── utils/           # Utility functions
+├── App.tsx          # Main application component with routing
+└── index.tsx        # Application entry point
+```
+
 ### 3. Backend Architecture
 ```
 server/
@@ -136,9 +164,10 @@ server/
     npm install
     ```
 
-2.  **Start the frontend development server:**
+2.  **Start the development servers:**
+    This command starts both the React frontend and the Express backend concurrently.
     ```bash
-    npm start
+    npm run dev
     ```
     The application will be available at `http://localhost:3000`.
 
