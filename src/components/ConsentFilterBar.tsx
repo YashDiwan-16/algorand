@@ -11,7 +11,7 @@ interface ConsentFilterBarProps {
 }
 
 const ConsentFilterBar: React.FC<ConsentFilterBarProps> = ({ status, onStatusChange, user, onUserChange, date, onDateChange }) => (
-  <div className="flex flex-wrap gap-2 mb-4 items-end">
+  <div className="flex flex-wrap gap-2 mb-4 items-end" data-testid="consent-filter-bar">
     <div>
       <label className="block text-xs font-medium mb-1">Status</label>
       <select value={status} onChange={e => onStatusChange(e.target.value as ConsentEventType | '')} className="border rounded px-2 py-1">
