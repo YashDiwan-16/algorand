@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from algosdk import account, mnemonic
 from algosdk.v2client import algod
 from algosdk.transaction import ApplicationCreateTxn, ApplicationCallTxn, OnComplete, StateSchema
@@ -5,9 +7,12 @@ import base64
 import json
 import time
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Connect to Algorand testnet
-algod_address = "https://testnet-api.algonode.cloud"
-algod_token = ""  # No token needed for public testnet
+algod_address = os.environ.get("ALGOD_ADDRESS", "https://testnet-api.algonode.cloud")
+algod_token = os.environ.get("ALGOD_TOKEN", "")
 client = algod.AlgodClient(algod_token, algod_address)
 
 # Load the compiled TEAL program
@@ -123,8 +128,8 @@ def test_contract(app_id, creator_address, creator_private_key, recipient_addres
 
 def main():
     # Create accounts from mnemonics
-    creator_mnemonic = "clean lend scan box absorb cancel legal wood frost dynamic frequent uphold cluster lake sibling luggage flat unfair runway pole physical receive foam above hat"
-    recipient_mnemonic = "alter green actual grab spoon okay faith repeat smile report easily retire plate enact vacuum spin bachelor rate where service settle nice north above soul"
+    creator_mnemonic = os.environ.get("CREATOR_MNEMONIC", "")
+    recipient_mnemonic = os.environ.get("RECIPIENT_MNEMONIC", "")
 
     creator_address, creator_private_key = get_account_from_mnemonic(creator_mnemonic)
     recipient_address, recipient_private_key = get_account_from_mnemonic(recipient_mnemonic)

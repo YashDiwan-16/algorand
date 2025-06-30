@@ -1,0 +1,2 @@
+algosdk
+python-dotenv 
