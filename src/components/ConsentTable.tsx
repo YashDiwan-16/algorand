@@ -32,7 +32,7 @@ const ConsentTable: React.FC<ConsentTableProps> = ({ rows }) => {
   });
 
   return (
-    <table className="min-w-full bg-white border rounded">
+    <table className="min-w-full bg-white border rounded" data-testid="consent-table">
       <thead>
         <tr>
           {columns.map(col => (
