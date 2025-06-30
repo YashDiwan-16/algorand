@@ -6,6 +6,7 @@ from algosdk.transaction import ApplicationCreateTxn, ApplicationCallTxn, OnComp
 import base64
 import json
 import time
+import pathlib
 
 # Load environment variables from .env file
 load_dotenv()
@@ -17,7 +18,8 @@ client = algod.AlgodClient(algod_token, algod_address)
 
 # Load the compiled TEAL program
 def load_teal(filename):
-    with open(filename, 'r') as f:
+    path = pathlib.Path(filename)
+    with path.open('r') as f:
         return f.read()
 
 # Create an account from the mnemonic
